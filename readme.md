@@ -9,6 +9,7 @@ It is built for use on http://savaslabs.com although you could easily adapt it f
 `cd /path/to/qusdis`
 `composer install`
 `touch /path/to/qusdis/storage/database.sqlite`
+`php artisan migrate`
 
 #### Local development
 
