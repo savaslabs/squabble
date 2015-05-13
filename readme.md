@@ -1,21 +1,46 @@
-## Lumen PHP Framework
+# Qusdis comment server
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+Qusdis (no hints on pronunciation provided) is a comment server built on Lumen, using a SQLite backend for storing comment data.
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+It is built for use on http://savaslabs.com although you could easily adapt it for your own site, with a bit of time and server to spare.
 
-## Official Documentation
+### Installation
 
-Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
+`cd /path/to/qusdis`
+`composer install`
 
-## Security Vulnerabilities
+#### Local development
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+`cd /path/to/qusdis`
+`php artisan serve`
 
-### License
+The server is now listening at `http://localhost:8000`
 
-The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+## API
+
+### GET
+
+The following routes are defined:
+
+- `api/comments` - Returns an array of all comments stored on the server
+- `api/comments/id/{id}` - Get a comment by numeric ID
+- `api/comments/post/{slug}` - Get a comment by the URL of the post it's associated with
+- `api/comments/count` - Get an array of comment count per posts
+
+### POST
+
+The follwoing route is defined:
+
+- `api/comments/new` - Save a new comment.
+
+Example POST request:
+
+``` bash
+curl -i -H 'Content-Type: application/json' -XPOST 'http://localhost:8000/api/comments/new' -d '{
+    "name": "Some author",
+    "title": "The subject line of the comment",
+    "email": "a@b.com",
+    "comment": "A comment would go here",
+    "slug": "2015/04/27/durham-restaurant-time-machine.html"
+}' 
+```
