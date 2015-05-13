@@ -6,15 +6,19 @@ It is built for use on http://savaslabs.com although you could easily adapt it f
 
 ### Installation
 
-`cd /path/to/qusdis`
-`composer install`
-`touch /path/to/qusdis/storage/database.sqlite`
-`php artisan migrate`
+``` bash
+cd /path/to/qusdis
+composer install
+touch /path/to/qusdis/storage/database.sqlite
+php artisan migrate
+```
 
 #### Local development
 
-`cd /path/to/qusdis`
-`php artisan serve`
+``` bash
+cd /path/to/qusdis
+php artisan serve
+```
 
 The server is now listening at `http://localhost:8000`
 
