@@ -13,13 +13,14 @@
 
 // Default response.
 $app->get('/', function() use ($app) {
-    return $app->welcome();
+    return redirect('api/comments');
 });
 
 // Get.
-$app->get('comments', 'App\Http\Controllers\CommentController@index');
-$app->get('comments/{id}', 'App\Http\Controllers\CommentController@getComment');
-$app->get('comments/post/{slug}', 'App\Http\Controllers\CommentController@getCommentsForPost');
+$app->get('api/comments', 'App\Http\Controllers\CommentController@index');
+$app->get('api/comments/id/{id}', 'App\Http\Controllers\CommentController@getComment');
+$app->get('api/comments/post/{slug}', 'App\Http\Controllers\CommentController@getCommentsForPost');
+$app->get('api/comments/count', 'App\Http\Controllers\CommentController@getCommentsCount');
 
 // Post.
-$app->post('comments/new', 'App\Http\Controllers\CommentController@saveComment');
+$app->post('api/comments/new', 'App\Http\Controllers\CommentController@saveComment');
