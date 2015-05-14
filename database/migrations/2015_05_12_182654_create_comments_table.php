@@ -16,7 +16,6 @@ class CreateCommentsTable extends Migration {
 		{
 			$table->increments('id');
             $table->string('slug');
-            $table->string('title');
             $table->string('comment');
             $table->string('name');
             $table->string('email');
