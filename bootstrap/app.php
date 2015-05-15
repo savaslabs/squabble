@@ -55,13 +55,14 @@ $app->singleton(
 |
 */
 
-// $app->middleware([
+ $app->middleware([
+   'palanik\lumen\Middleware\LumenCors'
 //     // 'Illuminate\Cookie\Middleware\EncryptCookies',
 //     // 'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
 //     // 'Illuminate\Session\Middleware\StartSession',
 //     // 'Illuminate\View\Middleware\ShareErrorsFromSession',
 //     // 'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
-// ]);
+]);
 
 // $app->routeMiddleware([
 
