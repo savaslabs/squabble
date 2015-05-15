@@ -26,7 +26,6 @@ class CommentController extends Controller{
         // TODO: Sanitize input.
         $commentData = array(
             'name' => $request->input('name'),
-            'title' => $request->input('title'),
             'email' => $request->input('email'),
             'comment' => $request->input('comment'),
             'slug' => ltrim($request->input('slug'), '/'),
