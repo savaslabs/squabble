@@ -66,11 +66,11 @@ class CommentTest extends TestCase
     public function testApiPostComment()
     {
         $comment = array(
-            'comment' => 'Something new',
-            'name' => 'A test bot',
-            'email' => 'test@bot.com',
-            'ip' => '127.1.1.1',
-            'slug' => '2015/04/27/durham-restaurant-time-machine.html',
+          'comment' => 'Something new',
+          'name' => 'A test bot',
+          'email' => 'test@bot.com',
+          'ip' => '127.1.1.1',
+          'slug' => '2015/04/27/durham-restaurant-time-machine.html',
         );
         $result = $this->call('POST', '/api/comments/new', $comment);
         $this->assertResponseOk();
@@ -82,6 +82,11 @@ class CommentTest extends TestCase
         $this->assertCount(3, $data['data'], 'Returned 3 comments');
     }
 
+  /**
+   * Test posting a spam comment.
+   *
+   * @return void
+   */
   public function testApiPostSpamComment()
   {
     $comment = array(
