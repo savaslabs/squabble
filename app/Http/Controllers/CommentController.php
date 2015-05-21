@@ -23,6 +23,19 @@ class CommentController extends Controller{
     }
 
     public function saveComment(Request $request){
+        if (!$request->input('name')) {
+            return $this->formatData(array(), false, 'Name is required', 400);
+        }
+        if (!$request->input('email')) {
+            return $this->formatData(array(), false, 'Email is required', 400);
+        }
+        if (!$request->input('comment')) {
+            return $this->formatData(array(), false, 'Comment is required', 400);
+        }
+        if (!$request->input('slug')) {
+            // TODO: Check against website.
+            return $this->formatData(array(), false, 'Slug is required', 400);
+        }
         // TODO: Sanitize input.
         $commentData = array(
             'name' => $request->input('name'),
@@ -51,11 +64,13 @@ class CommentController extends Controller{
         return $this->formatData($commentData);
     }
 
-    protected function formatData($data, $success = TRUE) {
-       return array(
-           'success' => $success,
-           'data' => $data,
-       );
+    protected function formatData($data, $success = TRUE, $message = '', $status_code = 200) {
+        $content = array(
+            'success' => $success,
+            'data' => $data,
+            'message' => $message,
+        );
+        return response($content, $status_code);
     }
 
 }
