@@ -36,7 +36,7 @@ class CommentTest extends TestCase
         $content = $response->getContent();
         $this->assertJson($content, 'Received JSON');
         $decoded = json_decode($content, true);
-        $this->assertCount(2, $decoded, 'Two comments');
+        $this->assertCount(2, $decoded['data'], 'Two comments');
     }
 
     /**
@@ -55,7 +55,7 @@ class CommentTest extends TestCase
         $this->assertResponseOk();
         $content = $response->getContent();
         $decoded = json_decode($content, true);
-        $this->assertCount(2, $decoded, 'Two comments');
+        $this->assertCount(2, $decoded['data'], 'Two comments');
     }
 
     /**
@@ -65,7 +65,6 @@ class CommentTest extends TestCase
      */
     public function testApiPostComment()
     {
-        $this->seed();
         $comment = array(
             'comment' => 'Something new',
             'name' => 'A test bot',
@@ -82,5 +81,21 @@ class CommentTest extends TestCase
         $data = json_decode($response->getContent(), true);
         $this->assertCount(3, $data['data'], 'Returned 3 comments');
     }
+
+  public function testApiPostSpamComment()
+  {
+    $comment = array(
+      'comment' => 'Spam',
+      'name' => 'Spammer',
+      'email' => 'spam@spam.com',
+      'ip' => '127.1.1.1',
+      'slug' => '2015/04/27/durham-restaurant-time-machine.html',
+      'url' => 'http://spam.com',
+    );
+    $this->call('POST', '/api/comments/new', $comment);
+    $this->assertResponseStatus(403);
+    $result = $this->call('GET', '/api/comments');
+    $this->assertNotContains('spam@spam.com', $result->getContent(), 'No spam posted', true);
+  }
 
 }
