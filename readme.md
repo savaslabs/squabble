@@ -35,7 +35,7 @@ The following routes are defined:
 
 ### POST
 
-The follwoing route is defined:
+The following route is defined:
 
 - `api/comments/new` - Save a new comment.
 
