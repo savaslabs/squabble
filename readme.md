@@ -44,7 +44,6 @@ Example POST request:
 ``` bash
 curl -i -H 'Content-Type: application/json' -XPOST 'http://localhost:8000/api/comments/new' -d '{
     "name": "Some author",
-    "title": "The subject line of the comment",
     "email": "a@b.com",
     "comment": "A comment would go here",
     "slug": "2015/04/27/durham-restaurant-time-machine.html"
