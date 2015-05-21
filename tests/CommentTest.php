@@ -53,7 +53,7 @@ class CommentTest extends TestCase
         $response = $this->call('GET', sprintf('/api/comments/post/%s', $slug));
         $this->assertResponseOk();
         $content = $response->getContent();
-        $decoded = json_decode($content, TRUE);
+        $decoded = json_decode($content, true);
         $this->assertCount(2, $decoded, 'Two comments');
     }
 
@@ -74,11 +74,11 @@ class CommentTest extends TestCase
         );
         $result = $this->call('POST', '/api/comments/new', $comment);
         $this->assertResponseOk();
-        $data = json_decode($result->getContent(), TRUE);
-        $this->assertEquals(TRUE, $data['success'], 'Successfully posted comment');
+        $data = json_decode($result->getContent(), true);
+        $this->assertEquals(true, $data['success'], 'Successfully posted comment');
 
         $response = $this->call('GET', '/api/comments');
-        $data = json_decode($response->getContent(), TRUE);
+        $data = json_decode($response->getContent(), true);
         $this->assertCount(3, $data['data'], 'Returned 3 comments');
     }
 
