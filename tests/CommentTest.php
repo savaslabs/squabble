@@ -29,6 +29,7 @@ class CommentTest extends TestCase
      */
     public function testApiResponse()
     {
+        $this->seed();
         $response = $this->call('GET', '/api/comments');
         $this->assertResponseOk();
         $this->assertObjectHasAttribute('content', $response, 'Response as content');

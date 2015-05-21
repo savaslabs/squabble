@@ -23,4 +23,9 @@ $app->get('api/comments/post/{slug}', 'App\Http\Controllers\CommentController@ge
 $app->get('api/comments/count', 'App\Http\Controllers\CommentController@getCommentsCount');
 
 // Post.
-$app->post('api/comments/new', 'App\Http\Controllers\CommentController@saveComment');
+
+
+$app->group(['middleware' => 'validInput'], function($app)
+{
+    $app->post('api/comments/new', 'App\Http\Controllers\CommentController@saveComment');
+});
