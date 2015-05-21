@@ -13,6 +13,23 @@ touch /path/to/qusdis/storage/database.sqlite
 php artisan migrate
 ```
 
+Make sure you have a `.env` file in the root of the repo with these contents:
+
+```
+APP_ENV=local
+APP_DEBUG=true
+APP_KEY=abracadabra
+
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+
+APP_LOCALE=en
+APP_FALLBACK_LOCALE=en
+
+DB_CONNECTION=sqlite
+DB_HOST=localhost
+```
+
 #### Local development
 
 ``` bash
