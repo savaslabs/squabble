@@ -30,8 +30,14 @@ class ValidInputMiddleware {
             return CommentHelpers::formatData(array(), false, 'Comment is required', 400);
         }
         if (!$request->input('slug')) {
-            // TODO: Check against website.
+            // TODO: Check against website to ensure the slug is valid.
             return CommentHelpers::formatData(array(), false, 'Slug is required', 400);
+        }
+        if (!$request->input('nocaptcha')) {
+            return CommentHelpers::formatData(array(), false, 'No captcha response required', 400);
+        }
+        if (stripos($request->input('nocaptcha'), getenv('NOCAPTCHA')) === FALSE) {
+            return CommentHelpers::formatData(array(), false, 'No captcha response incorrect', 403);
         }
         return $next($request);
     }

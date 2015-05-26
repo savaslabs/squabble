@@ -71,6 +71,7 @@ class CommentTest extends TestCase
           'email' => 'test@bot.com',
           'ip' => '127.1.1.1',
           'slug' => '2015/04/27/durham-restaurant-time-machine.html',
+          'nocaptcha' => 'owl',
         );
         $result = $this->call('POST', '/api/comments/new', $comment);
         $this->assertResponseOk();
@@ -96,11 +97,38 @@ class CommentTest extends TestCase
       'ip' => '127.1.1.1',
       'slug' => '2015/04/27/durham-restaurant-time-machine.html',
       'url' => 'http://spam.com',
+      'nocaptcha' => 'owl',
     );
     $this->call('POST', '/api/comments/new', $comment);
     $this->assertResponseStatus(403);
     $result = $this->call('GET', '/api/comments');
     $this->assertNotContains('spam@spam.com', $result->getContent(), 'No spam posted', true);
   }
+
+    /**
+     * Test posting a no captcha comment.
+     *
+     * @return void
+     */
+    public function testApiPostNoCaptcha()
+    {
+        $comment = array(
+            'comment' => 'No captcha',
+            'name' => 'Someone',
+            'email' => 'nocaptcha@nocaptcha.com',
+            'ip' => '127.0.0.1',
+            'slug' => '2015/04/27/durham-restaurant-time-machine.html',
+        );
+        $this->call('POST', '/api/comments/new', $comment);
+        $this->assertResponseStatus(400);
+        $result = $this->call('GET', '/api/comments');
+        $this->assertNotContains('nocaptcha@nocaptcha.com', $result->getContent(), 'No nocaptcha posted', true);
+        $comment['nocaptcha'] = 'OWL';
+        $this->call('POST', '/api/comments/new', $comment);
+        $this->assertResponseStatus(200);
+        $comment['nocaptcha'] = 'an owl';
+        $this->call('POST', '/api/comments/new', $comment);
+        $this->assertResponseStatus(200);
+    }
 
 }
