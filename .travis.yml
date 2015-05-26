@@ -9,3 +9,5 @@ before_script:
   - composer self-update
   - composer install
   - cp "tests/env.travis" ".env"
+  - touch "storage/database.sqlite"
+  - php artisan migrate
