@@ -1,15 +1,15 @@
-# Qusdis comment server
+# squabble comment server
 
-Qusdis (no hints on pronunciation provided) is a comment server built on Lumen, using a SQLite backend for storing comment data.
+Squabble is a comment server built on Lumen, using a SQLite backend for storing comment data.
 
 It is built for use on http://savaslabs.com although you could easily adapt it for your own site, with a bit of time and server to spare.
 
 ### Installation
 
 ``` bash
-cd /path/to/qusdis
+cd /path/to/squabble
 composer install
-touch /path/to/qusdis/storage/database.sqlite
+touch /path/to/squabble/storage/database.sqlite
 php artisan migrate
 ```
 
@@ -33,7 +33,7 @@ DB_HOST=localhost
 #### Local development
 
 ``` bash
-cd /path/to/qusdis
+cd /path/to/squabble
 php artisan serve
 ```
 
