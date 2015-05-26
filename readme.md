@@ -1,5 +1,7 @@
 # squabble comment server
 
+[![Build Status](https://travis-ci.org/savaslabs/squabble.svg)](https://travis-ci.org/savaslabs/squabble)
+
 Squabble is a comment server built on Lumen, using a SQLite backend for storing comment data.
 
 It is built for use on http://savaslabs.com although you could easily adapt it for your own site, with a bit of time and server to spare.
