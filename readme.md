@@ -30,6 +30,8 @@ APP_FALLBACK_LOCALE=en
 
 DB_CONNECTION=sqlite
 DB_HOST=localhost
+
+NOCAPTCHA=owl
 ```
 
 #### Local development
