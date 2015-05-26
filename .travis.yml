@@ -8,3 +8,4 @@ php:
 before_script:
   - composer self-update
   - composer install
+  - cp "tests/env.travis" ".env"
