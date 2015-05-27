@@ -11,6 +11,8 @@ class Comment extends Model
 {
     protected $fillable = ['slug', 'comment', 'name', 'email', 'ip', 'token'];
 
+    protected $hidden = ['token', 'email', 'ip'];
+
     public function getCommentAttribute($value)
     {
         return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
