@@ -36,6 +36,7 @@ The following routes are defined:
 - `api/comments/id/{id}` - Get a comment by numeric ID
 - `api/comments/post/{slug}` - Get a comment by the URL of the post it's associated with
 - `api/comments/count` - Get an array of comment count per posts
+- `api/comments/delete/{id}/{token}` - Delete a comment by ID, using a unique token for that comment. The token is emailed out when the comment is saved.
 
 ### POST
 
@@ -50,6 +51,7 @@ curl -i -H 'Content-Type: application/json' -XPOST 'http://localhost:8000/api/co
     "name": "Some author",
     "email": "a@b.com",
     "comment": "A comment would go here",
-    "slug": "2015/04/27/durham-restaurant-time-machine.html"
+    "slug": "2015/04/27/durham-restaurant-time-machine.html",
+    "nocaptcha": "owl"
 }' 
 ```
