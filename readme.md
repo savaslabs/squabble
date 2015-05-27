@@ -15,25 +15,7 @@ touch /path/to/squabble/storage/database.sqlite
 php artisan migrate
 ```
 
-Make sure you have a `.env` file in the root of the repo with these contents:
-
-```
-APP_ENV=local
-APP_DEBUG=true
-APP_KEY=abracadabra
-
-CACHE_DRIVER=file
-SESSION_DRIVER=file
-
-APP_LOCALE=en
-APP_FALLBACK_LOCALE=en
-
-DB_CONNECTION=sqlite
-DB_HOST=localhost
-
-NOCAPTCHA=owl
-BASEURL=localhost:8000
-```
+**Important:** Your site won't work without a `.env` file in the root of the repo. Please reference `env.example` for the contents of the `.env` file.
 
 #### Local development
 
