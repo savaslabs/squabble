@@ -17,6 +17,12 @@ class CommentHelpers {
             'data' => $data,
             'message' => $message,
         );
+        if ($status_code !== 200 && $message) {
+            \Log::warning($message, array('status_code' => $status_code, 'data' => $data));
+        }
+        if ($status_code == 200 && $message) {
+            \Log::info($message, array('status_code' => $status_code, 'data' => $data));
+        }
         return response($content, $status_code);
     }
 

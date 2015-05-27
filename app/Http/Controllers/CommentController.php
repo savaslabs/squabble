@@ -33,10 +33,14 @@ class CommentController extends Controller{
         );
         $commentData['token'] = \Hash::make($commentData['comment'] . $commentData['email'] . $commentData['slug']);
         $comment = Comment::create($commentData);
+
+        $commentData['created_at'] = $comment->created_at->toDateTimeString();
         $commentData['id'] = $comment->id;
         \Mail::send('new-comment', $commentData, function($message) {
+            $message->from('squabble@savaslabs.com', 'Squabble Comments');
             $message->to('info@savaslabs.com', 'Savas Labs')->subject('New comment posted to site');
         });
+        \Log::info(sprintf('Saved new comment with ID %d from IP %s', $comment->id, $request->getClientIp()));
         return CommentHelpers::formatData(array($commentData));
     }
 
@@ -47,8 +51,10 @@ class CommentController extends Controller{
         }
         if (trim(urldecode($token)) == trim($comment->getAttribute('token'))) {
             $comment->delete();
+            \Log::info(sprintf('Deleted comment #%d', $id));
             return CommentHelpers::formatData(array(), true, sprintf('Comment %d was deleted', $id));
         }
+        \Log::error(sprintf('Unauthorized request to delete comment #%d', $id));
         return CommentHelpers::formatData(array(), false, null, 403);
     }
 
