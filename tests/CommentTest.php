@@ -144,12 +144,12 @@ class CommentTest extends TestCase
         $result = $this->call('POST', '/api/comments/new', $comment);
         $data = json_decode($result->getContent(), true);
         $this->assertResponseStatus(200);
-        $result = $this->call('GET', sprintf('/api/comments/delete/%d/%s', $data['data']['id'], 'nottherealtoken'));
+        $result = $this->call('GET', sprintf('/api/comments/delete/%d/%s', $data['data'][0]['id'], 'nottherealtoken'));
         $this->assertResponseStatus(403);
         $result = $this->call('GET', sprintf('/api/comments/delete/1000/test'));
         $this->assertResponseStatus(400);
-        $this->call('GET', sprintf('/api/comments/delete/%d/%s', $data['data']['id'], $data['data']['token']));
+        $this->call('GET', sprintf('/api/comments/delete/%d/%s', $data['data'][0]['id'], $data['data'][0]['token']));
         $this->assertResponseStatus(200);
     }
 
-}
+    }

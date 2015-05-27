@@ -15,7 +15,7 @@ class CommentController extends Controller{
 
     public function getComment($id){
         $comment = Comment::find($id);
-        return ($comment) ? CommentHelpers::formatData($comment) : CommentHelpers::formatData(array(), FALSE);
+        return ($comment) ? CommentHelpers::formatData(array($comment)) : CommentHelpers::formatData(array(), FALSE);
     }
 
     public function getCommentsForPost($slug) {
@@ -37,7 +37,7 @@ class CommentController extends Controller{
         \Mail::send('new-comment', $commentData, function($message) {
             $message->to('info@savaslabs.com', 'Savas Labs')->subject('New comment posted to site');
         });
-        return CommentHelpers::formatData($commentData);
+        return CommentHelpers::formatData(array($commentData));
     }
 
     public function deleteComment($id, $token) {
@@ -66,7 +66,7 @@ class CommentController extends Controller{
                 $commentData[$comment->slug]++;
             }
         }
-        return CommentHelpers::formatData($commentData);
+        return CommentHelpers::formatData(array($commentData));
     }
 
 }
