@@ -1,7 +1,7 @@
 <?php
 
-array(
+return array(
 'mandrill' => [
-    'secret' => 'your-mandrill-key',
-]
+    'secret' => getenv('MANDRILL_KEY'),
+],
 );
