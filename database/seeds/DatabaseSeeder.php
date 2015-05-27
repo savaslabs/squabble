@@ -32,6 +32,7 @@ class CommentTableSeeder extends Seeder {
                 'comment' => 'Here is a comment',
                 'ip' => '127.0.0.1',
                 'slug' => '2015/04/27/durham-restaurant-time-machine.html',
+                'token' => 'blahblahblah',
             )
         );
         Comment::create(
@@ -41,6 +42,7 @@ class CommentTableSeeder extends Seeder {
                 'comment' => 'No comment.',
                 'ip' => '127.0.0.1',
                 'slug' => '2015/04/27/durham-restaurant-time-machine.html',
+                'token' => 'testesttest',
             )
         );
     }

@@ -21,6 +21,7 @@ $app->get('api/comments', 'App\Http\Controllers\CommentController@index');
 $app->get('api/comments/id/{id}', 'App\Http\Controllers\CommentController@getComment');
 $app->get('api/comments/post/{slug}', 'App\Http\Controllers\CommentController@getCommentsForPost');
 $app->get('api/comments/count', 'App\Http\Controllers\CommentController@getCommentsCount');
+$app->get('api/comments/delete/{id}/{token}', 'App\Http\Controllers\CommentController@deleteComment');
 
 // POST requests.
 $app->group(['middleware' => 'validInput'], function($app) {

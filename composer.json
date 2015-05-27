@@ -6,6 +6,8 @@
     "type": "project",
     "require": {
         "laravel/lumen-framework": "5.0.*",
+        "guzzlehttp/guzzle": "~4.0",
+        "illuminate/mail": "~5.0",
         "vlucas/phpdotenv": "~1.0",
         "palanik/lumen-cors": "dev-master",
         "psy/psysh": "@stable"

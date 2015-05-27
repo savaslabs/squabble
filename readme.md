@@ -32,6 +32,7 @@ DB_CONNECTION=sqlite
 DB_HOST=localhost
 
 NOCAPTCHA=owl
+BASEURL=localhost:8000
 ```
 
 #### Local development

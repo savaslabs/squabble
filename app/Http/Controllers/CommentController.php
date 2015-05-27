@@ -31,7 +31,25 @@ class CommentController extends Controller{
             'slug' => ltrim($request->input('slug'), '/'),
             'ip' => $request->getClientIp(),
         );
-        return CommentHelpers::formatData(Comment::create($commentData));
+        $commentData['token'] = \Hash::make($commentData['comment'] . $commentData['email'] . $commentData['slug']);
+        $comment = Comment::create($commentData);
+        $commentData['id'] = $comment->id;
+        \Mail::send('new-comment', $commentData, function($message) {
+            $message->to('info@savaslabs.com', 'Savas Labs')->subject('New comment posted to site');
+        });
+        return CommentHelpers::formatData($commentData);
+    }
+
+    public function deleteComment($id, $token) {
+        $comment = Comment::find($id);
+        if (!$comment) {
+            return CommentHelpers::formatData(array(), false, sprintf('Comment %d not found', $id), 400);
+        }
+        if (trim(urldecode($token)) == trim($comment->getAttribute('token'))) {
+            $comment->delete();
+            return CommentHelpers::formatData(array(), true, sprintf('Comment %d was deleted', $id));
+        }
+        return CommentHelpers::formatData(array(), false, null, 403);
     }
 
     public function getCommentsCount() {

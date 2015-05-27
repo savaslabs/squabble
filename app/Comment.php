@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Comment extends Model
 {
-    protected $fillable = ['slug', 'comment', 'name', 'email', 'ip'];
+    protected $fillable = ['slug', 'comment', 'name', 'email', 'ip', 'token'];
 
     public function getCommentAttribute($value)
     {

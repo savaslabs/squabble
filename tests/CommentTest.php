@@ -131,4 +131,25 @@ class CommentTest extends TestCase
         $this->assertResponseStatus(200);
     }
 
+    public function testApiGetDeleteComment()
+    {
+        $comment = array(
+            'comment' => 'Comment to delete',
+            'name' => 'Someone soon to be forgotten',
+            'email' => 'comment@delete.me',
+            'ip' => '127.0.0.1',
+            'nocaptcha' => 'owl',
+            'slug' => '2015/04/27/durham-restaurant-time-machine.html',
+        );
+        $result = $this->call('POST', '/api/comments/new', $comment);
+        $data = json_decode($result->getContent(), true);
+        $this->assertResponseStatus(200);
+        $result = $this->call('GET', sprintf('/api/comments/delete/%d/%s', $data['data']['id'], 'nottherealtoken'));
+        $this->assertResponseStatus(403);
+        $result = $this->call('GET', sprintf('/api/comments/delete/1000/test'));
+        $this->assertResponseStatus(400);
+        $this->call('GET', sprintf('/api/comments/delete/%d/%s', $data['data']['id'], $data['data']['token']));
+        $this->assertResponseStatus(200);
+    }
+
 }
