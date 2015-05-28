@@ -37,7 +37,8 @@ class ValidInputMiddleware {
             return CommentHelpers::formatData(array(), false, 'No captcha response required', 400);
         }
         if (stripos($request->input('nocaptcha'), getenv('NOCAPTCHA')) === FALSE) {
-            return CommentHelpers::formatData(array(), false, 'No captcha response incorrect', 403);
+            // We don't return a 403 here, so that we can display the message to the end user.
+            return CommentHelpers::formatData(array(), false, 'Sorry, our mascot is not a(n) ' . $request->input('nocaptcha'));
         }
         return $next($request);
     }
