@@ -23,15 +23,17 @@ $app->withFacades();
 
 $app->withEloquent();
 
+$app->configure('cors');
+
 /*
-|--------------------------------------------------------------------------
-| Register Container Bindings
-|--------------------------------------------------------------------------
-|
-| Now we will register a few bindings in the service container. We will
-| register the exception handler and the console kernel. You may add
-| your own bindings here if you like or you can make another file.
-|
+  |--------------------------------------------------------------------------
+  | Register Container Bindings
+  |--------------------------------------------------------------------------
+  |
+  | Now we will register a few bindings in the service container. We will
+  | register the exception handler and the console kernel. You may add
+  | your own bindings here if you like or you can make another file.
+  |
 */
 
 $app->singleton(
@@ -45,23 +47,23 @@ $app->singleton(
 );
 
 /*
-|--------------------------------------------------------------------------
-| Register Middleware
-|--------------------------------------------------------------------------
-|
-| Next, we will register the middleware with the application. These can
-| be global middleware that run before and after each request into a
-| route or middleware that'll be assigned to some specific routes.
-|
+  |--------------------------------------------------------------------------
+  | Register Middleware
+  |--------------------------------------------------------------------------
+  |
+  | Next, we will register the middleware with the application. These can
+  | be global middleware that run before and after each request into a
+  | route or middleware that'll be assigned to some specific routes.
+  |
 */
 
- $app->middleware([
-   'palanik\lumen\Middleware\LumenCors'
-//     // 'Illuminate\Cookie\Middleware\EncryptCookies',
-//     // 'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
-//     // 'Illuminate\Session\Middleware\StartSession',
-//     // 'Illuminate\View\Middleware\ShareErrorsFromSession',
-//     // 'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
+$app->middleware([
+    'Nord\Lumen\Cors\Middleware\CorsMiddleware',
+    //     // 'Illuminate\Cookie\Middleware\EncryptCookies',
+    //     // 'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
+    //     // 'Illuminate\Session\Middleware\StartSession',
+    //     // 'Illuminate\View\Middleware\ShareErrorsFromSession',
+    //     // 'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
 ]);
 
 $app->routeMiddleware([
@@ -69,27 +71,29 @@ $app->routeMiddleware([
 ]);
 
 /*
-|--------------------------------------------------------------------------
-| Register Service Providers
-|--------------------------------------------------------------------------
-|
-| Here we will register all of the application's service providers which
-| are used to bind services into the container. Service providers are
-| totally optional, so you are not required to uncomment this line.
-|
+  |--------------------------------------------------------------------------
+  | Register Service Providers
+  |--------------------------------------------------------------------------
+  |
+  | Here we will register all of the application's service providers which
+  | are used to bind services into the container. Service providers are
+  | totally optional, so you are not required to uncomment this line.
+  |
 */
 
 // $app->register('App\Providers\AppServiceProvider');
 
+$app->register('Nord\Lumen\Cors\CorsServiceProvider');
+
 /*
-|--------------------------------------------------------------------------
-| Load The Application Routes
-|--------------------------------------------------------------------------
-|
-| Next we will include the routes file so that they can all be added to
-| the application. This will provide all of the URLs the application
-| can respond to, as well as the controllers that may handle them.
-|
+  |--------------------------------------------------------------------------
+  | Load The Application Routes
+  |--------------------------------------------------------------------------
+  |
+  | Next we will include the routes file so that they can all be added to
+  | the application. This will provide all of the URLs the application
+  | can respond to, as well as the controllers that may handle them.
+  |
 */
 
 require __DIR__.'/../app/Http/routes.php';
