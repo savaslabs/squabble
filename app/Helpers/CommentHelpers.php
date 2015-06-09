@@ -23,7 +23,8 @@ class CommentHelpers {
         if ($status_code == 200 && $message) {
             \Log::info($message, array('status_code' => $status_code, 'data' => $data));
         }
-        return response($content, $status_code);
+        return response($content, $status_code)
+            ->header('Access-Control-Allow-Origin', '*');
     }
 
-}
+    }
