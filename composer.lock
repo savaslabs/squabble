@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4fcf95dcd780ecc51c1487b1c18e34ca",
+    "hash": "4246a099d25046494617b4265224ca38",
     "packages": [
         {
             "name": "danielstjules/stringy",
@@ -1931,60 +1931,6 @@
                 "php"
             ],
             "time": "2015-05-02 15:40:40"
-        },
-        {
-            "name": "nordsoftware/lumen-cors",
-            "version": "1.3.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nordsoftware/lumen-cors.git",
-                "reference": "4258436a0044a16a58af02728fe041100e743dbe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nordsoftware/lumen-cors/zipball/4258436a0044a16a58af02728fe041100e743dbe",
-                "reference": "4258436a0044a16a58af02728fe041100e743dbe",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "codeception/codeception": "~2.1@dev",
-                "codeception/specify": "dev-master",
-                "codeception/verify": "dev-master",
-                "laravel/lumen-framework": "~5.1@dev"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Nord\\Lumen\\Cors\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christoffer Niska",
-                    "email": "christofferniska@gmail.com"
-                }
-            ],
-            "description": "CORS module for the Lumen PHP framework.",
-            "keywords": [
-                "cors",
-                "cross-origin",
-                "headers",
-                "http",
-                "laravel",
-                "lumen",
-                "preflight",
-                "request",
-                "resource",
-                "sharing"
-            ],
-            "time": "2015-05-14 22:28:07"
         },
         {
             "name": "psr/log",

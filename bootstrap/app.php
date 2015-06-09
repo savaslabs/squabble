@@ -23,8 +23,6 @@ $app->withFacades();
 
 $app->withEloquent();
 
-$app->configure('cors');
-
 /*
   |--------------------------------------------------------------------------
   | Register Container Bindings
@@ -58,7 +56,6 @@ $app->singleton(
 */
 
 $app->middleware([
-    'Nord\Lumen\Cors\Middleware\CorsMiddleware',
     //     // 'Illuminate\Cookie\Middleware\EncryptCookies',
     //     // 'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
     //     // 'Illuminate\Session\Middleware\StartSession',
@@ -82,8 +79,6 @@ $app->routeMiddleware([
 */
 
 // $app->register('App\Providers\AppServiceProvider');
-
-$app->register('Nord\Lumen\Cors\CorsServiceProvider');
 
 /*
   |--------------------------------------------------------------------------
