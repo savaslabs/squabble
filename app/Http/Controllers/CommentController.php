@@ -23,6 +23,18 @@ class CommentController extends Controller{
         return ($comment) ? CommentHelpers::formatData($comment) : CommentHelpers::formatData(array(), FALSE);
     }
 
+    /**
+     * Get comments for a given post.
+     *
+     * This is a POST method. Pass in the 'slug' for a post and return
+     * comments associated with it.
+     */
+    public function getCommentsByPost(Request $request) {
+        $slug = ltrim($request->input('slug'), '/');
+        $comments = Comment::where('slug', urldecode($slug))->get();
+        return ($comments) ? CommentHelpers::formatData($comments) : CommentHelpers::formatData(array(), FALSE);
+    }
+
     public function saveComment(Request $request){
         $commentData = array(
             'name' => $request->input('name'),

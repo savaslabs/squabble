@@ -27,3 +27,5 @@ $app->get('api/comments/delete/{id}/{token}', 'App\Http\Controllers\CommentContr
 $app->group(['middleware' => 'validInput'], function($app) {
     $app->post('api/comments/new', 'App\Http\Controllers\CommentController@saveComment');
 });
+
+$app->post('api/comments/post', 'App\Http\Controllers\CommentController@getCommentsByPost');
