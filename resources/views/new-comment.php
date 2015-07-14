@@ -22,6 +22,6 @@
         <h2>Comment text</h2>
         <p><?php echo $comment; ?></td>
             <h3>Administration</h3>
-            <p>To delete this comment, visit http://<?php echo getenv('BASEURL') ?>/api/comments/delete/<?php echo $id ?>/<?php echo urlencode($token); ?></p>
+            <p>To delete this comment, visit /api/comments/delete/<?php echo $id ?>/<?php echo urlencode($token); ?></p>
     </body>
 </html>
