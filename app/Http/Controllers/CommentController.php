@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use Illuminate\Http\Request;
 use App\Helpers\CommentHelpers;
+use GuzzleHttp\Client;
 
 class CommentController extends Controller{
 
@@ -52,6 +53,17 @@ class CommentController extends Controller{
             $message->from('squabble@savaslabs.com', 'Squabble Comments');
             $message->to('info@savaslabs.com', 'Savas Labs')->subject('New comment posted to site');
         });
+//        //Post to slack here: make http request, use getenv to get token. Lumen --> guzzle, check it out. call guzzle class,
+//        $client = new Client([
+//            // Base URI is used with relative requests
+//          'base_uri' => 'https://hooks.slack.com',
+//            // You can set any number of default request options.
+//          'timeout'  => 2.0,
+//        ]);
+//        $slack_token = getEnv('SLACK_TOKEN');
+//        $response = $client->post($slack_token);
+//        return $response;
+
         \Log::info(sprintf('Saved new comment with ID %d from IP %s', $comment->id, $request->getClientIp()));
         return CommentHelpers::formatData(array($commentData));
     }
