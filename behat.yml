@@ -1,0 +1,7 @@
+default:
+  extensions:
+    Behat\MinkExtension:
+      # Change this URL to whatever your local site URL is.
+      base_url: ''
+      sessions:
+      selenium2: ~
