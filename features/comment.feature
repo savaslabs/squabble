@@ -19,6 +19,3 @@
     Then I should see "behat test comment"
     Then I go to "http://localhost:8000/api/comments"
     And I should see "behat test comment"
-
-
-  Scenario: Delete the comment
