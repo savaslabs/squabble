@@ -9,15 +9,16 @@
         "guzzlehttp/guzzle": "~4.0",
         "illuminate/mail": "~5.0",
         "vlucas/phpdotenv": "~1.0",
-        "psy/psysh": "@stable",
+        "psy/psysh": "@stable"
+    },
+    "require-dev": {
+        "behat/behat": "^3.0",
+        "phpunit/phpunit": "~4.0",
         "behat/mink": "~1.7",
         "behat/mink-goutte-driver": "~1.2",
         "behat/mink-selenium2-driver": "~1.3",
-        "behat/mink-extension": "~2.1"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.0",
-        "behat/behat": "~3.0.6"
+        "behat/mink-extension": "~2.1",
+        "arisro/behat-lumen-extension": "^1.0"
     },
     "autoload": {
         "psr-4": {
