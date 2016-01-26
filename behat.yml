@@ -1,10 +1,10 @@
 default:
   extensions:
-    Arisro\Behat\ServiceContainer\LumenExtension: ~
+#    Arisro\Behat\ServiceContainer\LumenExtension: ~
     Behat\MinkExtension:
       # Change this URL to whatever your local site URL is.
       base_url: ''
       sessions:
       selenium2: ~
-      default_session: lumen
-      lumen: ~
+#      default_session: lumen
+#      lumen: ~
