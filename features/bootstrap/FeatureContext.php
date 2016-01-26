@@ -6,7 +6,11 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 use Laracasts\Behat\Context\Migrator;
-use Laracasts\Behat\Context\DatabaseTransactions;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Artisan;
 
 
 /**
@@ -15,7 +19,6 @@ use Laracasts\Behat\Context\DatabaseTransactions;
 class FeatureContext extends MinkContext Implements Context, SnippetAcceptingContext
 {
 
-//    use DatabaseTransactions;
 
     /**
      * Initializes context.
@@ -26,18 +29,50 @@ class FeatureContext extends MinkContext Implements Context, SnippetAcceptingCon
      */
     public function __construct()
     {
+        require_once __DIR__ . '/../../bootstrap/app.php';
+
     }
 
-    /**
-     *
-     * Roll it back after the scenario.
-     *
+//    /**
+//     *
+//     * @BeforeSuite
+//     */
+//
+//    public static function bootstrapLaravel()
+//    {
+//    }
+
+//    /**
+//     * Begin a database transaction.
+//     *
+//     * @BeforeScenario
+//     */
+//    public static function beginTransaction()
+//    {
+//        DB::beginTransaction();
+//    }
+//
+//    /**
+//     *
+//     * Roll it back after the scenario.
+//     *
 //     * @AfterScenario
 //     */
 //    public static function rollback()
 //    {
 //        DB::rollback();
 //    }
+
+    /**
+     *
+     * Roll it back after the scenario.
+     *
+     * @BeforeScenario
+     */
+    public static function cleanDB()
+    {
+        Artisan::call('migrate:refresh');
+    }
 
 
 
