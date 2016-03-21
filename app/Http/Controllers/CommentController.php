@@ -43,7 +43,7 @@ class CommentController extends Controller{
             'slug' => ltrim($request->input('slug'), '/'),
             'ip' => $request->getClientIp(),
         );
-        $commentData['token'] = \Hash::make($commentData['comment'] . $commentData['email'] . $commentData['slug']);
+        $commentData['token'] = md5(\Hash::make($commentData['comment'] . $commentData['email'] . $commentData['slug']));
         $comment = Comment::create($commentData);
 
         $commentData['created_at'] = $comment->created_at->toDateTimeString();
