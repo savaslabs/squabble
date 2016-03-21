@@ -16,8 +16,10 @@ touch /path/to/squabble/storage/database.sqlite
 php artisan migrate
 ```
 
-**Important:** Your site won't work without a `.env` file in the root of the repo. Please reference `env.example` for the contents of the `.env` file.
-
+**Important:**
+ - Your site won't work without a `.env` file in the root of the repo. Please reference `env.example` for the contents of the `.env` file.
+ - Make sure your `.env` and `database.sqlite` files are not named something other than `.env` and `database.sqlite`, as they will not fulfill their function otherwise.
+ - Check if you need any other [requirements](https://lumen.laravel.com/docs/5.2) to run Lumen (e.g. If you're On Ubuntu, you may need to install php5-sqlite).
 #### Local development
 
 ``` bash
