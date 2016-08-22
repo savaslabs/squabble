@@ -1,4 +1,4 @@
 /lumen.log
 /vendor
-.env
+*.env
 storage/database.sqlite
