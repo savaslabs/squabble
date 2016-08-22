@@ -1,0 +1,24 @@
+load_balancer:
+    image: tutum/haproxy
+    links:
+        - web
+
+web:
+    image: savaslabs/squabble
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY=abracadabra
+      - CACHE_DRIVER=file
+      - SESSION_DRIVER=file
+      - APP_LOCALE=en
+      - APP_FALLBACK_LOCALE=en
+      - DB_CONNECTION=sqlite
+      - DB_HOST=localhost
+      - NOCAPTCHA=owl
+      - MAIL_DRIVER=log
+      - BASEURL=localhost:8000
+      - DB_DATABASE=/var/www/html/storage/database.sqlite
+    volumes:
+        - ./docker/conf.d:/etc/nginx/conf.d
+        - ./docker/sites-enabled:/etc/nginx/sites-enabled
