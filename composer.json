@@ -1,7 +1,6 @@
 {
-    "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "name": "savaslabs/squabble",
+    "description": "Savas Squabble comment server.",
     "license": "MIT",
     "type": "project",
     "require": {

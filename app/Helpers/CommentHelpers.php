@@ -27,4 +27,4 @@ class CommentHelpers {
             ->header('Access-Control-Allow-Origin', '*');
     }
 
-    }
+}
