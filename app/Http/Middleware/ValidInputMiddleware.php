@@ -21,7 +21,7 @@ class ValidInputMiddleware {
 
         // If we've got a bot, fake a successful request.
         if ($request->input('url')) {
-            $responseParams =array('message' => Spam, 'status' => 403);
+            $responseParams =array('message' => 'Spam', 'status' => 403);
         }
         if (!$request->input('name')) {
             $responseParams =array('message' => 'Name is required', 'status' => 400);
@@ -43,7 +43,7 @@ class ValidInputMiddleware {
             // We don't return a 403 here, so that we can display the message to the end user.
             $responseParams = array(
               'message' => 'Sorry, our mascot is not a(n) ' . $request->input('nocaptcha'),
-              'status' => 200
+              'status' => 400
             );
         }
 
