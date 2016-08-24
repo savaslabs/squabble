@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Helpers\CommentHelpers;
 use App\Helpers\SlackHelpers;
 
-class CommentController extends Controller{
+class CommentController extends Controller {
 
     public function index() {
         $comments = Comment::all();
@@ -44,6 +44,10 @@ class CommentController extends Controller{
             'slug' => ltrim($request->input('slug'), '/'),
             'ip' => $request->getClientIp(),
         );
+
+        if (preg_match('@savaslabs.com$', $commentData['email']) === 1) {
+          $commentData['savasian'] = 1;
+        }
 
         $commentData['token'] = md5(\Hash::make($commentData['comment'] . $commentData['email'] . $commentData['slug']));
         $comment = Comment::create($commentData);
