@@ -9,7 +9,7 @@ It is built for use on http://savaslabs.com although you could easily adapt it f
 
 ### Installation for local development
 
-Copy `docker-compose.local.example.yml` to `docker-compose.local.yml` and fill in the environment variables with relevant values as needed.
+Copy `docker-compose.local.example.yml` to `docker-compose.local.yml`. Add overrides for any environment variables which you need to override by copying the defaults set in `docker-compose.yml` and changing them in your local configuration file.
 
 Run `docker build -t savaslabs/squabble:latest .` to rebuild the container if you've made any changes to `Dockerfile` or the files in the `docker` directory.
 

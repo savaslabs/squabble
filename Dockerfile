@@ -41,7 +41,7 @@ RUN composer global require "hirak/prestissimo:^0.3"
 
 COPY ./docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-COPY ./docker/php.ini /etc/php5/fpm/php.ini
+COPY ./docker/php-fpm.conf /etc/php-fpm.conf
 
 COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 
@@ -49,6 +49,8 @@ COPY ./docker/conf.d/config-1.conf /etc/nginx/conf.d/config-1.conf
 
 COPY ./docker/sites-enabled/default /etc/nginx/sites-enabled/default
 
+# Set clearenv = no in php-fpm pool so that environment variables persist.
+RUN sed -i 's/;clear_env/clear_env/' /etc/php5/fpm/pool.d/www.conf
 
 ################################################################################
 # Copy source
@@ -58,6 +60,7 @@ COPY ./source/ /var/www/html
 
 WORKDIR /var/www/html
 RUN composer install --no-dev
+RUN service php5-fpm stop
 
 ################################################################################
 # Boot
