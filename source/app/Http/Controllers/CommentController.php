@@ -45,7 +45,7 @@ class CommentController extends Controller {
             'ip' => $request->getClientIp(),
         );
 
-        if (preg_match('@savaslabs.com$', $commentData['email']) === 1) {
+        if (preg_match('/@savaslabs.com$/', $commentData['email']) === 1) {
           $commentData['savasian'] = 1;
         }
 
