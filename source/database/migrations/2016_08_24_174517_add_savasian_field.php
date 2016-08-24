@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class AddSavasianField extends Migration {
 
@@ -15,6 +16,10 @@ class AddSavasianField extends Migration {
     Schema::table('comments', function ($table) {
       $table->boolean('savasian')->default(FALSE);
     });
+
+    DB::table('comments')
+      ->where('email', 'like', '%@savaslabs.com')
+      ->update(['savasian' => 1]);
 	}
 
 	/**
