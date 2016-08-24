@@ -153,4 +153,22 @@ class CommentTest extends TestCase
         $this->assertResponseStatus(200);
     }
 
+  /**
+   * Test that Savasian field is set to 1 when comment email is @savasalabs.com.
+   */
+  public function testApiSavasianComment() {
+    $comment = array(
+      'comment' => 'Comment to delete',
+      'name' => 'Someone soon to be forgotten',
+      'email' => 'comment@savaslabs.com',
+      'ip' => '127.0.0.1',
+      'nocaptcha' => 'owl',
+      'slug' => '2015/04/27/durham-restaurant-time-machine.html',
+    );
+    $result = $this->call('POST', '/api/comments/new', $comment);
+    $data = json_decode($result->getContent(), true);
+    $this->assertResponseStatus(200);
+    $this->assertEquals($data['data'][0]['savasian'], "1");
+  }
+
 }
