@@ -21,31 +21,34 @@ class ValidInputMiddleware {
 
         // If we've got a bot, fake a successful request.
         if ($request->input('url')) {
-            $responseParams = array(array(), false, 'Spam', 403);
+            $responseParams =array('message' => Spam, 'status' => 403);
         }
         if (!$request->input('name')) {
-            $responseParams = array(array(), false, 'Name is required', 400);
+            $responseParams =array('message' => 'Name is required', 'status' => 400);
         }
         if (!$request->input('email')) {
-            $responseParams = array(array(), false, 'Email is required', 400);
+            $responseParams =array('message' => 'Email is required', 'status' => 400);
         }
         if (!$request->input('comment')) {
-            $responseParams = array(array(), false, 'Comment is required', 400);
+            $responseParams =array('message' => 'Comment is required', 'status' => 400);
         }
         if (!$request->input('slug')) {
             // TODO: Check against website to ensure the slug is valid.
-            $responseParams = array(array(), false, 'Slug is required', 400);
+            $responseParams = array('message' => 'Slug is required', 'status' => 400);
         }
         if (!$request->input('nocaptcha')) {
-            $responseParams = array(array(), false, 'No captcha response required', 400);
+            $responseParams = array('message' => 'No captcha response required', 'status' => 400);
         }
         if (stripos($request->input('nocaptcha'), getenv('NOCAPTCHA')) === FALSE) {
             // We don't return a 403 here, so that we can display the message to the end user.
-            $responseParams = array(array(), false, 'Sorry, our mascot is not a(n) ' . $request->input('nocaptcha'));
+            $responseParams = array(
+              'message' => 'Sorry, our mascot is not a(n) ' . $request->input('nocaptcha'),
+              'status' => 200
+            );
         }
 
         if (!empty($responseParams)) {
-          SlackHelpers::notifySlack(sprintf("Failed comment submission. %s\n\nFull request: %s", $responseParams[2], print_r(
+          SlackHelpers::notifySlack(sprintf("Failed comment submission. %s\n\nFull request: %s", $responseParams['message'], print_r(
             array(
             'url' => $request->input('url'),
             'name' => $request->input('name'),
@@ -55,7 +58,7 @@ class ValidInputMiddleware {
             'nocaptha' => $request->input('nocaptcha'),
             ),
             TRUE)));
-          return call_user_func_array(array('App\Helpers\CommentHelpers', 'formatData'), $responseParams);
+          return CommentHelpers::formatData(array(), false, $responseParams['message'], $responseParams['status']);
         }
 
         return $next($request);
