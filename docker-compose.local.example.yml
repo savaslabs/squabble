@@ -3,5 +3,7 @@ load_balancer:
         - "8000:80"
 
 web:
+    environment:
+       - SLACK_WEBHOOK_URL=secret
     volumes:
         - ./source:/var/www/html
