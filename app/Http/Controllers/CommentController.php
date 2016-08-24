@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use Illuminate\Http\Request;
 use App\Helpers\CommentHelpers;
+use App\Helpers\SlackHelpers;
 
 class CommentController extends Controller{
 
@@ -43,16 +44,31 @@ class CommentController extends Controller{
             'slug' => ltrim($request->input('slug'), '/'),
             'ip' => $request->getClientIp(),
         );
+
         $commentData['token'] = md5(\Hash::make($commentData['comment'] . $commentData['email'] . $commentData['slug']));
         $comment = Comment::create($commentData);
 
         $commentData['created_at'] = $comment->created_at->toDateTimeString();
         $commentData['id'] = $comment->id;
+
+        // Send mail.
         \Mail::send('new-comment', $commentData, function($message) {
             $message->from('squabble@savaslabs.com', 'Squabble Comments');
             $message->to('info@savaslabs.com', 'Savas Labs')->subject('New comment posted to site');
         });
+
+        $commentLink = sprintf("<https://%s/%s|%s>", getenv('BASEURL'), $commentData['slug'], $commentData['slug']);
+        $deleteUrl = sprintf("/api/comments/delete/%s/%s", $commentData['id'], urlencode($commentData['token']));
+        $slackText = sprintf("New comment from %s on post %s:\n\n%s\n\nTo delete, use %s",
+            $commentData['name'],
+            $commentLink,
+            $commentData['comment'],
+            $deleteUrl
+          );
+        SlackHelpers::notifySlack($slackText);
+
         \Log::info(sprintf('Saved new comment with ID %d from IP %s', $comment->id, $request->getClientIp()));
+
         return CommentHelpers::formatData(array($commentData));
     }
 
@@ -86,5 +102,7 @@ class CommentController extends Controller{
         }
         return CommentHelpers::formatData(array($commentData));
     }
+
+
 
 }
