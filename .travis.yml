@@ -17,6 +17,7 @@ before_install:
 install:
   - docker build -t savaslabs/squabble:latest .
   - make install
+  - composer install
 
 script:
   - make test
