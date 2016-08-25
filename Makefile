@@ -1,7 +1,7 @@
 install:
 	- docker-compose -f docker-compose.yml -f docker-compose.local.yml down
+	- cd source && composer install
 	- docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d
-	- docker exec -it squabble_web_1 composer install
 	- touch source/storage/database.sqlite
 	- docker exec -it squabble_web_1 php artisan migrate
 
