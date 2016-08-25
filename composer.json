@@ -1,0 +1,22 @@
+{
+    "name": "savaslabs/squabble-tests",
+    "description": "Test suite for the squabble package",
+    "authors": [
+        {
+            "name": "Tim Stallmann",
+            "email": "tim@savaslabs.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/timstallmann/behat-rest-testing"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "behat/behat": "~3.0.6",
+        "behat/web-api-extension": "~1.0@dev",
+        "deminy/behat-rest-testing": "dev-master"
+    }
+}
