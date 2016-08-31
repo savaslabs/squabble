@@ -4,4 +4,4 @@ load_balancer:
 
 web:
     volumes:
-        - ./source/tests:/var/www/html/tests
+        - ./source:/var/www/html
