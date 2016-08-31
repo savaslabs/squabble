@@ -25,3 +25,4 @@ script:
   - docker exec squabble_web_1 php artisan migrate
   - docker exec squabble_web_1 phpunit
   - vendor/bin/behat
+  - travis_debug
