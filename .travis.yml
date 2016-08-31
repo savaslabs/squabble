@@ -18,6 +18,7 @@ install:
   - docker build -t savaslabs/squabble:latest .
   - make install
   - composer install
+  - docker exec squabble_web_1 chmod ugo+rw /var/www/html/storage/logs/lumen.log
 
 script:
   - docker exec squabble_web_1 phpunit
