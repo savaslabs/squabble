@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "feeadf9e7246146b83cbd68d2cd8fd51",
-    "content-hash": "f7a0f0b21d24cbca80979df994a5c9b4",
+    "hash": "c19ba7fe51fb4e41f24d59122d481c45",
+    "content-hash": "b8438b9605f3b5d0882b1ba6f124a785",
     "packages": [],
     "packages-dev": [
         {
@@ -249,22 +249,22 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/timstallmann/behat-rest-testing.git",
-                "reference": "e64d85a09d73893a72465a6475e7c083c90ea2b0"
+                "url": "https://github.com/deminy/behat-rest-testing.git",
+                "reference": "de7281b404a990ad6d9221dbcf46d4aa9395d333"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/timstallmann/behat-rest-testing/zipball/e64d85a09d73893a72465a6475e7c083c90ea2b0",
-                "reference": "e64d85a09d73893a72465a6475e7c083c90ea2b0",
+                "url": "https://api.github.com/repos/deminy/behat-rest-testing/zipball/de7281b404a990ad6d9221dbcf46d4aa9395d333",
+                "reference": "de7281b404a990ad6d9221dbcf46d4aa9395d333",
                 "shasum": ""
             },
             "require": {
-                "behat/behat": "~3.0.6|~3.1-beta",
+                "behat/behat": "~3.0.6|~3.1.0",
                 "behat/web-api-extension": "dev-master",
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "squizlabs/php_codesniffer": "2.0 - 2.5"
+                "squizlabs/php_codesniffer": ">=2.0"
             },
             "type": "library",
             "extra": {
@@ -278,6 +278,7 @@
                     "Behat\\RestTestingExtension\\": "src/RestTestingExtension/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -291,13 +292,10 @@
             "description": "Demo on doing feature tests with Behat 3 and how to start writing feature tests for REST APIs.",
             "keywords": [
                 "Behat",
-                "PHP",
-                "REST"
+                "php",
+                "rest"
             ],
-            "support": {
-                "source": "https://github.com/timstallmann/behat-rest-testing/tree/master"
-            },
-            "time": "2016-08-25 18:17:22"
+            "time": "2016-08-26 16:47:50"
         },
         {
             "name": "doctrine/instantiator",
@@ -1020,16 +1018,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.5.3",
+            "version": "5.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "08745ede58cb02b4043adadc09a01c09e698e3f7"
+                "reference": "3e6e88e56c912133de6e99b87728cca7ed70c5f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/08745ede58cb02b4043adadc09a01c09e698e3f7",
-                "reference": "08745ede58cb02b4043adadc09a01c09e698e3f7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3e6e88e56c912133de6e99b87728cca7ed70c5f5",
+                "reference": "3e6e88e56c912133de6e99b87728cca7ed70c5f5",
                 "shasum": ""
             },
             "require": {
@@ -1094,20 +1092,20 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-08-25 04:45:28"
+            "time": "2016-08-26 07:11:44"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "3.2.5",
+            "version": "3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "8f444748e174e49d5bd2bd7a9bebbf44edbb55fb"
+                "reference": "46b249b43fd2ed8e127aa0fdb3cbcf56e9bc0e49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/8f444748e174e49d5bd2bd7a9bebbf44edbb55fb",
-                "reference": "8f444748e174e49d5bd2bd7a9bebbf44edbb55fb",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/46b249b43fd2ed8e127aa0fdb3cbcf56e9bc0e49",
+                "reference": "46b249b43fd2ed8e127aa0fdb3cbcf56e9bc0e49",
                 "shasum": ""
             },
             "require": {
@@ -1153,7 +1151,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2016-08-24 16:58:26"
+            "time": "2016-08-26 05:51:59"
         },
         {
             "name": "psr/http-message",
