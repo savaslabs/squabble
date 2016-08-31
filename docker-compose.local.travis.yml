@@ -1,7 +1,3 @@
 load_balancer:
     ports:
         - "8000:80"
-
-web:
-    volumes:
-        - ./source:/var/www/html
