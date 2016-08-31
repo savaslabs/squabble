@@ -20,6 +20,8 @@ install:
   - composer install
   - docker exec squabble_web_1 touch /var/www/html/storage/logs/lumen.log
   - docker exec squabble_web_1 chmod ugo+rw /var/www/html/storage/logs/lumen.log
+  - docker exec squabble_web_1 chmod ugo+w /var/www/html/storage
+  - docker exec squabble_web_1 chmod ugo+w /var/www/html/storage/database.sqlite
 
 script:
   - docker exec squabble_web_1 phpunit
