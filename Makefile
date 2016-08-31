@@ -3,6 +3,7 @@ install:
 	- cd source && composer install
 	- docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d
 	- touch source/storage/database.sqlite
+	- touch source/storage/logs/lumen.log
 	- docker exec -it squabble_web_1 php artisan migrate
 	- composer install
 
