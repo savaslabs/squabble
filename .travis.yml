@@ -22,6 +22,7 @@ install:
 script:
   - rm -rf source/storage/database.sqlite
   - touch source/storage/database.sqlite
+  - sudo chmod ugo+w source/storage/logs
   - docker exec squabble_web_1 php artisan migrate
   - docker exec squabble_web_1 phpunit
   - vendor/bin/behat -v
