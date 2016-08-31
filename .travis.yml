@@ -32,6 +32,7 @@ script:
   - docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d
   - touch ./database.sqlite
   - docker exec -it squabble_web_1 php artisan migrate
+  - sed -i 's/localhost:8000/localhost:80/' behat.yml
   - vendor/bin/behat -v
   - docker exec squabble_web_1 cat /var/log/nginx/access-squabble.log
   - docker exec squabble_web_1 cat /var/log/nginx/error-squabble.log
