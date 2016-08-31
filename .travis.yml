@@ -25,6 +25,13 @@ install:
 
 script:
   - docker exec squabble_web_1 phpunit
+  - make clean
+  - rm -rf source/
+  - rm docker-compose.local.yml
+  - cp docker-compose.prod.example.yml docker-compose.local.yml
+  - docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d
+  - touch ./database.sqlite
+  - docker exec -it squabble_web_1 php artisan migrate
   - vendor/bin/behat -v
   - docker exec squabble_web_1 cat /var/log/nginx/access-squabble.log
   - docker exec squabble_web_1 cat /var/log/nginx/error-squabble.log
