@@ -1,0 +1,8 @@
+load_balancer:
+    ports:
+        - "80:80"
+        - "443:443"
+
+web:
+    volumes:
+       - ./database.sqlite:/var/www/html/storage/database.sqlite

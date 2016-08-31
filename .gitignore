@@ -1,4 +1,6 @@
-/lumen.log
+lumen.log
+source/vendor
 /vendor
 .env
-storage/database.sqlite
+source/storage/database.sqlite
+docker-compose.local.yml

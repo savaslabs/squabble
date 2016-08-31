@@ -2,8 +2,6 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-Dotenv::load(__DIR__.'/../');
-
 /*
 |--------------------------------------------------------------------------
 | Create The Application

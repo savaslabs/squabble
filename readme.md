@@ -7,25 +7,27 @@ Squabble is a comment server built on Lumen, using a SQLite backend for storing 
 
 It is built for use on http://savaslabs.com although you could easily adapt it for your own site, with a bit of time and server to spare.
 
-### Installation
+### Installation for local development
 
-``` bash
-cd /path/to/squabble
-composer install
-touch /path/to/squabble/storage/database.sqlite
-php artisan migrate
-```
+Copy `docker-compose.local.example.yml` to `docker-compose.local.yml`. Add overrides for any environment variables which you need to override by copying the defaults set in `docker-compose.yml` and changing them in your local configuration file.
 
-**Important:** Your site won't work without a `.env` file in the root of the repo. Please reference `env.example` for the contents of the `.env` file.
+Run `docker build -t savaslabs/squabble:latest .` to rebuild the container if you've made any changes to `Dockerfile` or the files in the `docker` directory.
+
+Run `make install`
+
+### Installation for production
+
+TBD
 
 #### Local development
 
-``` bash
-cd /path/to/squabble
-php artisan serve
-```
+`make up`
 
 The server is now listening at `http://localhost:8000`
+
+#### Testing
+
+`make test` will run phpunit tests
 
 ## API
 
