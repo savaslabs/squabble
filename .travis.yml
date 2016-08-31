@@ -24,5 +24,6 @@ script:
   - touch source/storage/database.sqlite
   - docker exec squabble_web_1 php artisan migrate
   - docker exec squabble_web_1 phpunit
-  - vendor/bin/behat
-  - travis_debug
+  - vendor/bin/behat -v
+  - docker exec squabble_web_1 cat /var/log/nginx/access-squabble.log
+  - docker exec squabble_web_1 cat /var/log/nginx/error-squabble.log
