@@ -4,6 +4,7 @@ install:
 	- docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d
 	- touch source/storage/database.sqlite
 	- docker exec -it squabble_web_1 php artisan migrate
+	- composer install
 
 clean:
 	- docker-compose rm --force

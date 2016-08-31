@@ -20,4 +20,8 @@ install:
   - composer install
 
 script:
-  - make test
+  - rm -rf source/storage/database.sqlite
+  - touch source/storage/database.sqlite
+  - docker exec -it squabble_web_1 php artisan migrate
+  - docker exec -it squabble_web_1 phpunit
+  - vendor/bin/behat
