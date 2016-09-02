@@ -52,4 +52,4 @@ test:
 	make phpunit
 	make behat
 
-.PHONY: clean install test down up
+.PHONY: clean install test down up wip behat phpunit reset_db reset_logs logs
