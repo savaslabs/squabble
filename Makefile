@@ -1,6 +1,7 @@
 install:
+	if [ ! -f docker-compose.local.yml ]; then cp docker-compose.local.example.yml docker-compose.local.yml; fi
 	-docker-compose -f docker-compose.yml -f docker-compose.local.yml down
-	docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d
+	docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d --build
 	make reset_db
 	make reset_logs
 	docker exec squabble_web_1 composer install -n --prefer-dist --ansi

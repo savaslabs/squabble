@@ -1,6 +1,5 @@
 Feature: Adding a comment via the API works
 
-  @wip
 Scenario: Someone adds a valid comment
   When I send a POST request to "api/comments/new" with form data:
     """
