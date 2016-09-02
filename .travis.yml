@@ -16,23 +16,11 @@ before_install:
 
 install:
   - docker build -t savaslabs/squabble:latest .
+  - cp docker-compose.prod.example.yml docker-compose.local.yml
   - make install
-  - composer install
-  - docker exec squabble_web_1 touch /var/www/html/storage/logs/lumen.log
-  - docker exec squabble_web_1 chmod ugo+rw /var/www/html/storage/logs/lumen.log
-  - docker exec squabble_web_1 chmod ugo+w /var/www/html/storage
-  - docker exec squabble_web_1 chmod ugo+w /var/www/html/storage/database.sqlite
 
 script:
-  - docker exec squabble_web_1 phpunit
-  - make clean
-  - rm -rf source/
-  - rm docker-compose.local.yml
-  - cp docker-compose.prod.example.yml docker-compose.local.yml
-  - docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d
-  - touch ./database.sqlite
-  - docker exec -it squabble_web_1 php artisan migrate
-  - sed -i 's/localhost:8000/localhost:80/' behat.yml
-  - vendor/bin/behat -v
-  - docker exec squabble_web_1 cat /var/log/nginx/access-squabble.log
-  - docker exec squabble_web_1 cat /var/log/nginx/error-squabble.log
+  make test
+
+after_failure:
+  docker logs squabble_web_1

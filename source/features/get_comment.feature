@@ -8,14 +8,13 @@ Scenario: Get all comments via the API
       "success": true
   }
   """
-  And the response should contain "Here is a comment"
+  And the response should contain "A Comment!"
   # TODO: Test this more thoroughly. This is hard to do because of not being able to bulk delete comments easily.
 
 Scenario: Get a single comment via the API
   When I send a GET request to "api/comments/id/1"
-  Then the response should contain "durham-restaurant-time-machine.html"
-  And the response should contain "Fooz"
-  And the response should contain "Here is a comment"
+  Then the response should contain "bas.html"
+  And the response should contain "A Comment!"
 
 Scenario: Get comment count for a given post
   Given I send a GET request to "api/comments/post/fo%2Fbar%2Fa_test_slug3.html"
