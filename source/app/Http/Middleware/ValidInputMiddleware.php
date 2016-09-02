@@ -23,23 +23,23 @@ class ValidInputMiddleware {
         if ($request->input('url')) {
             $responseParams =array('message' => 'Spam', 'status' => 403);
         }
-        if (!$request->input('name')) {
+        else if (!$request->input('name')) {
             $responseParams =array('message' => 'Name is required', 'status' => 400);
         }
-        if (!$request->input('email')) {
+        else if (!$request->input('email')) {
             $responseParams =array('message' => 'Email is required', 'status' => 400);
         }
-        if (!$request->input('comment')) {
+        else if (!$request->input('comment')) {
             $responseParams =array('message' => 'Comment is required', 'status' => 400);
         }
-        if (!$request->input('slug')) {
+        else if (!$request->input('slug')) {
             // TODO: Check against website to ensure the slug is valid.
             $responseParams = array('message' => 'Slug is required', 'status' => 400);
         }
-        if (!$request->input('nocaptcha')) {
+        else if (!$request->input('nocaptcha')) {
             $responseParams = array('message' => 'No captcha response required', 'status' => 400);
         }
-        if (stripos($request->input('nocaptcha'), getenv('NOCAPTCHA')) === FALSE) {
+        else if (stripos($request->input('nocaptcha'), getenv('NOCAPTCHA')) === FALSE) {
             // We don't return a 403 here, so that we can display the message to the end user.
             $responseParams = array(
               'message' => 'Sorry, our mascot is not a(n) ' . $request->input('nocaptcha'),
@@ -55,7 +55,7 @@ class ValidInputMiddleware {
             'email' => $request->input('email'),
             'comment' => $request->input('comment'),
             'slug' => $request->input('slug'),
-            'nocaptha' => $request->input('nocaptcha'),
+            'nocaptcha' => $request->input('nocaptcha'),
             ),
             TRUE)));
           return CommentHelpers::formatData(array(), false, $responseParams['message'], $responseParams['status']);

@@ -15,8 +15,10 @@ before_install:
   - cp docker-compose.local.travis.yml docker-compose.local.yml
 
 install:
-  - docker build -t savaslabs/squabble:latest .
   - make install
 
 script:
-  - make test
+  make test
+
+after_failure:
+  docker logs squabble_web_1
