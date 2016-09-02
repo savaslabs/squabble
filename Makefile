@@ -2,9 +2,16 @@ install:
 	-docker-compose -f docker-compose.yml -f docker-compose.local.yml down
 	docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d
 	make reset_db
+	make reset_logs
 	docker exec squabble_web_1 composer install -n --prefer-dist --ansi
 	docker exec squabble_web_1 php artisan migrate
 	docker-compose ps
+
+reset_logs:
+	-docker exec squabble_web_1 rm /var/www/html/storage/logs/lumen.log
+	docker exec squabble_web_1 touch /var/www/html/storage/logs/lumen.log
+	docker exec squabble_web_1 chmod a+w /var/www/html/storage/logs
+	docker exec squabble_web_1 chmod a+w /var/www/html/storage/logs/lumen.log
 
 logs:
 	docker logs -f squabble_web_1
