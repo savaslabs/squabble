@@ -15,7 +15,6 @@ before_install:
   - cp docker-compose.local.travis.yml docker-compose.local.yml
 
 install:
-  - cp docker-compose.prod.example.yml docker-compose.local.yml
   - make install
 
 script:
