@@ -5,7 +5,7 @@ default:
     #     progress: ~
     extensions:
         Behat\WebApiExtension:
-            base_url: http://localhost:80
+            base_url: http://localhost:8000
         Behat\RestTestingExtension:
     suites:
         default:

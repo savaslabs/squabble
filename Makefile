@@ -7,6 +7,7 @@ install:
 	docker exec -u www-data squabble_web_1 composer install -n --prefer-dist --ansi
 	docker exec squabble_web_1 php artisan migrate
 	docker-compose ps
+	composer install
 
 reset_logs:
 	-docker exec squabble_web_1 rm /var/www/html/storage/logs/lumen.log
@@ -44,7 +45,7 @@ phpunit:
 
 behat:
 	make reset_db
-	docker exec squabble_web_1 vendor/bin/behat -c source/behat.yml --colors --strict
+	vendor/bin/behat -c behat.yml --colors --strict
 
 wip:
 	docker exec squabble_web_1 vendor/bin/behat -c source/behat.yml --colors --strict --tags=@wip

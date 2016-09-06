@@ -56,7 +56,7 @@ RUN sed -i 's/;clear_env/clear_env/' /etc/php5/fpm/pool.d/www.conf
 ##############################################################################
 
 COPY ./source/ /var/www/html
-RUN mkdir /var/www; mkdir /var/www/.composer; chown www-data:www-data /var/www/.composer; chown -R www-data:www-data /var/www/html
+RUN mkdir /var/www/.composer; chown www-data:www-data /var/www/.composer; chown -R www-data:www-data /var/www/html
 WORKDIR /var/www/html
 USER www-data
 RUN composer global require "hirak/prestissimo:^0.3"
