@@ -4,3 +4,11 @@ services:
     ports:
       - "80:80"
       - "443:443"
+
+  web:
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - APP_KEY=abracadabra
+      - SLACK_WEBHOOK_URL=
+      - BASEURL=

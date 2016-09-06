@@ -16,7 +16,7 @@ RUN apt-get install -my -o Retries=25 \
 	php5-fpm \
 	php5-sqlite \
 	php5-curl \
-  curl \
+    curl \
 	wget \
 	sqlite3 \
 	supervisor \
