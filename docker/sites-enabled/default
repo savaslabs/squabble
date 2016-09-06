@@ -2,10 +2,6 @@
 	server {
 		listen 80 default_server;
 
-        access_log /var/log/nginx/access-squabble.log;
-        error_log /var/log/nginx/error-squabble.log;
-
-
 		root /var/www/html/public;
 
 		charset utf-8;
