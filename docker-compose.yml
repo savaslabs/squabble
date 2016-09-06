@@ -20,6 +20,9 @@ services:
         - ./docker/conf.d:/etc/nginx/conf.d
         - ./docker/sites-enabled:/etc/nginx/sites-enabled
         - db:/db
+        - vendor:/var/www/html/vendor
 volumes:
   db:
+    driver: local
+  vendor:
     driver: local
