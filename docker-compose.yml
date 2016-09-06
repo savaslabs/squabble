@@ -1,9 +1,5 @@
 version: '2'
 services:
-  load_balancer:
-    image: tutum/haproxy
-    depends_on:
-      - web
   web:
     build: .
     environment:
