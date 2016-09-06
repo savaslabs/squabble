@@ -4,7 +4,7 @@ install:
 	docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d --build
 	make reset_db
 	make reset_logs
-	docker exec squabble_web_1 composer install -n --prefer-dist --ansi
+	docker exec -u www-data squabble_web_1 composer install -n --prefer-dist --ansi
 	docker exec squabble_web_1 php artisan migrate
 	docker-compose ps
 

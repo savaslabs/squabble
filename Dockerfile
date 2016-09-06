@@ -34,8 +34,6 @@ RUN cd $HOME && \
     chmod +x phpunit.phar && \
     mv phpunit.phar /usr/local/bin/phpunit
 
-RUN composer global require "hirak/prestissimo:^0.3"
-
 ################################################################################
 # Configuration
 ##############################################################################
@@ -54,14 +52,15 @@ COPY ./docker/sites-enabled/default /etc/nginx/sites-enabled/default
 RUN sed -i 's/;clear_env/clear_env/' /etc/php5/fpm/pool.d/www.conf
 
 ################################################################################
-# Copy source
+# Copy source and install dependencies
 ##############################################################################
 
 COPY ./source/ /var/www/html
-
+RUN mkdir /var/www; mkdir /var/www/.composer; chown www-data:www-data /var/www/.composer; chown -R www-data:www-data /var/www/html
 WORKDIR /var/www/html
-RUN composer install --no-dev
-RUN service php5-fpm stop
+USER www-data
+RUN composer global require "hirak/prestissimo:^0.3"
+RUN composer install --no-dev --no-plugins --no-scripts
 
 ################################################################################
 # Boot
@@ -69,4 +68,5 @@ RUN service php5-fpm stop
 
 EXPOSE 80 443
 
+USER root
 CMD ["/usr/bin/supervisord"]
