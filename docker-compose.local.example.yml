@@ -1,8 +1,5 @@
 version: '2'
 services:
-  load_balancer:
-    ports:
-        - "8000:80"
   web:
     environment:
        - SLACK_WEBHOOK_URL=
