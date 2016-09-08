@@ -46,11 +46,11 @@ phpunit:
 
 behat:
 	make reset_db
-	docker run --rm -it --net squabble_default -v $$(pwd)/source:/var/www/html savaslabs/squabble vendor/bin/behat -c behat.yml --colors --strict
+	docker run --rm -it --net squabble_default -v $$(pwd)/source:/var/www/html squabble_web vendor/bin/behat -c behat.yml --colors --strict
 
 wip:
 	make reset_db
-	docker run --rm -it --net squabble_default -v $$(pwd)/source:/var/www/html savaslabs/squabble vendor/bin/behat -c behat.yml --colors --strict --tags=@wip
+	docker run --rm -it --net squabble_default -v $$(pwd)/source:/var/www/html squabble_web vendor/bin/behat -c behat.yml --colors --strict --tags=@wip
 
 test:
 	make phpunit
