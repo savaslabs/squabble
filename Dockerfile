@@ -10,6 +10,7 @@ MAINTAINER tim@savaslabs.com
 # Install supervisor, PHP & tools
 ################################################################################
 
+RUN echo deb http://ftp.us.debian.org/debian jessie main > /etc/apt/sources.list
 RUN apt-get clean && apt-get install debian-archive-keyring
 RUN apt-get update -o Retries=25
 RUN apt-get install -my -o Retries=25 \
