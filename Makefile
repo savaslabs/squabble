@@ -50,7 +50,8 @@ behat:
 
 wip:
 	make reset_db
-	docker run --rm -it --net squabble_default -v $$(pwd)/source:/var/www/html squabble_web vendor/bin/behat -c behat.yml --colors --strict --tags=@wip
+	docker-compose -f behat/docker-compose.yml run --rm behat --tags=@wip
+
 
 test:
 	make phpunit
