@@ -1,9 +1,7 @@
-load_balancer:
-    ports:
-        - "8000:80"
-
-web:
+version: '2'
+services:
+  web:
     environment:
-       - SLACK_WEBHOOK_URL=secret
+       - SLACK_WEBHOOK_URL=
     volumes:
         - ./source:/var/www/html
