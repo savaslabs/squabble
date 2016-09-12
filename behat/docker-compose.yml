@@ -1,0 +1,11 @@
+version: "2"
+services:
+  behat:
+    image: savaslabs/docker-behat:latest
+    volumes:
+      - ./:/srv
+
+networks:
+  default:
+    external:
+      name: squabble_default

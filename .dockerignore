@@ -3,3 +3,6 @@ source/phpunit.xml
 source/storage/logs/lumen.log
 source/storage.database.sqlite
 source/vendor/
+Dockerfile
+.dockerignore
+behat

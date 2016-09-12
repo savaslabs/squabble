@@ -21,6 +21,7 @@ services:
         - ./docker/sites-enabled:/etc/nginx/sites-enabled
         - db:/db
         - vendor:/var/www/html/vendor
+
 volumes:
   db:
     driver: local
