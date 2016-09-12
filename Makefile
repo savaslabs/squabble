@@ -1,13 +1,15 @@
 install:
 	if [ ! -f docker-compose.local.yml ]; then cp docker-compose.local.example.yml docker-compose.local.yml; fi
 	-docker-compose -f docker-compose.yml -f docker-compose.local.yml down
-	docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d --build
+	docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d --build --force-recreate
 	make reset_db
 	make reset_logs
 	docker exec -u www-data squabble_web_1 composer install -n --prefer-dist --ansi
 	docker exec squabble_web_1 php artisan migrate
 	docker-compose ps
-	composer install
+
+build:
+	docker build -t savaslabs/squabble .
 
 reset_logs:
 	-docker exec squabble_web_1 rm /var/www/html/storage/logs/lumen.log
@@ -22,7 +24,6 @@ clean:
 	make down
 	-docker-compose rm --force -v
 	-docker volume rm squabble_db
-	-docker volume rm squabble_logs
 
 reset_db:
 	-docker exec squabble_web_1 rm /db/database.sqlite
@@ -45,10 +46,11 @@ phpunit:
 
 behat:
 	make reset_db
-	vendor/bin/behat -c behat.yml --colors --strict
+	docker-compose -f behat/docker-compose.yml run --rm behat
 
 wip:
-	docker exec squabble_web_1 vendor/bin/behat -c source/behat.yml --colors --strict --tags=@wip
+	make reset_db
+	docker run --rm -it --net squabble_default -v $$(pwd)/source:/var/www/html squabble_web vendor/bin/behat -c behat.yml --colors --strict --tags=@wip
 
 test:
 	make phpunit

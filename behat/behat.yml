@@ -1,0 +1,12 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext: ~
+        - Behat\WebApiExtension\Context\WebApiContext: ~
+        - Behat\RestTestingExtension\Context\RestTestingContext: ~
+        - Behat\RestTestingContext\RestContext: ~
+  extensions:
+    Behat\WebApiExtension:
+        base_url: http://web:80
+    Behat\RestTestingExtension:
