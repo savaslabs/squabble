@@ -4,3 +4,4 @@ source/vendor
 .env
 source/storage/database.sqlite
 docker-compose.local.yml
+docker-compose.prod.yml
