@@ -28,7 +28,7 @@ services:
       - MANDRILL_KEY=secret
     volumes:
       - /db:/db
-      - /logs:/var/www/html/app/storage/logs
+      - /logs:/var/www/html/storage/logs
     cap_drop:
       - ALL
     cap_add:
