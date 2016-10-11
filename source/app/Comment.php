@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Comment extends Model
 {
-    protected $fillable = ['slug', 'comment', 'name', 'email', 'ip', 'token'];
+    protected $fillable = ['slug', 'comment', 'name', 'email', 'ip', 'token', 'savasian'];
 
     protected $hidden = ['token', 'email', 'ip'];
 
