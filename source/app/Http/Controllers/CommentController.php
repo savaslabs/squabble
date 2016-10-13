@@ -6,6 +6,7 @@ use App\Comment;
 use Illuminate\Http\Request;
 use App\Helpers\CommentHelpers;
 use App\Helpers\SlackHelpers;
+use Illuminate\Support\Facades\Mail;
 
 class CommentController extends Controller {
 
@@ -49,14 +50,14 @@ class CommentController extends Controller {
           $commentData['savasian'] = 1;
         }
 
-        $commentData['token'] = md5(\Hash::make($commentData['comment'] . $commentData['email'] . $commentData['slug']));
+        $commentData['token'] = sha1($commentData['comment'] . $commentData['email'] . $commentData['slug']);
         $comment = Comment::create($commentData);
 
         $commentData['created_at'] = $comment->created_at->toDateTimeString();
         $commentData['id'] = $comment->id;
 
         // Send mail.
-        \Mail::send('new-comment', $commentData, function($message) {
+        Mail::send('new-comment', $commentData, function($message) {
             $message->from('squabble@savaslabs.com', 'Squabble Comments');
             $message->to('info@savaslabs.com', 'Savas Labs')->subject('New comment posted to site');
         });

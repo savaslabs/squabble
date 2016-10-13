@@ -24,7 +24,7 @@ $app->get('api/comments/count', 'App\Http\Controllers\CommentController@getComme
 $app->get('api/comments/delete/{id}/{token}', 'App\Http\Controllers\CommentController@deleteComment');
 
 // POST requests.
-$app->group(['middleware' => 'validInput'], function($app) {
+$app->group(['middleware' => ['throttle:1,1', 'validInput']], function($app) {
     $app->post('api/comments/new', 'App\Http\Controllers\CommentController@saveComment');
 });
 

@@ -1,5 +1,7 @@
 <?php
 
+use Laravel\Lumen\Testing\DatabaseTransactions;
+
 /**
  * @file
  * Tests for the Comment system.
@@ -10,6 +12,8 @@
  */
 class CommentTest extends TestCase
 {
+
+    use DatabaseTransactions;
 
     /**
      * Test redirect from route to api/comments.
