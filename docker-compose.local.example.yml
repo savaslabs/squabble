@@ -1,6 +1,6 @@
 version: '2'
 services:
-  web:
+  app:
     environment:
        - SLACK_WEBHOOK_URL=
     volumes:
