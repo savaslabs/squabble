@@ -27,7 +27,7 @@ class CommentController extends Controller {
     /**
      * Get comments for a given post.
      *
-     * This is a POST method. Pass in the 'slug' for a post and return
+     * This is a GET method. Pass in the 'slug' for a post and return
      * comments associated with it.
      */
     public function getCommentsByPost(Request $request) {

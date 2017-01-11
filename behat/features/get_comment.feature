@@ -17,7 +17,7 @@ Scenario: Get a single comment via the API
   And the response should contain "A Comment!"
 
 Scenario: Get comment count for a given post
-  Given I send a GET request to "api/comments/post/fo%2Fbar%2Fa_test_slug3.html"
+  Given I send a GET request to "api/comments/post?slug=fo%2Fbar%2Fa_test_slug3.html"
   Then the response should contain json:
     """
     {
@@ -34,6 +34,6 @@ Scenario: Get comment count for a given post
     slug=fo/bar/a_test_slug3.html
     nocaptcha=owl
     """
-  And I send a GET request to "api/comments/post/fo%2Fbar%2Fa_test_slug3.html"
-  Then the response should contain "a_test_slug3.html"
-  And the response should contain "A Comment!"
+  And I send a GET request to "api/comments/post?slug=fo%2Fbar%2Fa_test_slug3.html"
+  Then the response should contain "A Comment!"
+  And the response should contain "a_test_slug3.html"

@@ -1,8 +1,24 @@
 version: '2'
 services:
-  web:
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - /etc/nginx/conf.d
+  dockergen:
+    image: jwilder/docker-gen
+    command: -notify-sighup nginx -watch /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
+    volumes_from:
+      - nginx
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./docker/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl
+  app:
     build: .
     environment:
+      - VIRTUAL_HOST=local.comments.savaslabs.com
       - APP_ENV=local
       - APP_DEBUG=true
       - APP_KEY=abracadabra
@@ -17,8 +33,6 @@ services:
       - BASEURL=localhost:8000
       - DB_DATABASE=/db/database.sqlite
     volumes:
-        - ./docker/conf.d:/etc/nginx/conf.d
-        - ./docker/sites-enabled:/etc/nginx/sites-enabled
         - db:/db
         - vendor:/var/www/html/vendor
 

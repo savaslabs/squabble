@@ -8,5 +8,5 @@ default:
         - Behat\RestTestingContext\RestContext: ~
   extensions:
     Behat\WebApiExtension:
-        base_url: http://web:80
+        base_url: http://app:80
     Behat\RestTestingExtension:

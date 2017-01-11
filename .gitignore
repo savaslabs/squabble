@@ -1,5 +1,8 @@
 lumen.log
 source/vendor
+behat/bin
+behat/vendor
+behat/composer.lock
 /vendor
 .env
 source/storage/database.sqlite

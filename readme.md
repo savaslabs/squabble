@@ -11,23 +11,19 @@ It is built for use on http://savaslabs.com although you could easily adapt it f
 
 Copy `docker-compose.local.example.yml` to `docker-compose.local.yml`. Add overrides for any environment variables which you need to override by copying the defaults set in `docker-compose.yml` and changing them in your local configuration file.
 
-Run `docker build -t savaslabs/squabble:latest .` to rebuild the container if you've made any changes to `Dockerfile` or the files in the `docker` directory.
+Run `make build` to rebuild the container if you've made any changes to `Dockerfile` or the files in the `docker` directory.
 
 Run `make install`
 
-### Installation for production
-
-TBD
-
 #### Local development
 
-`make up`
+Run `make up`.
 
-The server is now listening at `http://localhost:8000`
+Edit your `/etc/hosts` and set `127.0.0.1 local.comments.savaslabs.com`. Run `curl http://local.comments.savaslabs.com/api/comments` to confirm that the server is working; if not, run `docker-compose logs -f` to see what error messages are appearing.
 
 #### Testing
 
-`make test` will run phpunit tests
+`make test` will run PHPUnit and Behat tests.
 
 ## API
 

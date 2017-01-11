@@ -22,10 +22,9 @@ $app->get('api/comments/id/{id}', 'App\Http\Controllers\CommentController@getCom
 $app->get('api/comments/post/{slug}', 'App\Http\Controllers\CommentController@getCommentsForPost');
 $app->get('api/comments/count', 'App\Http\Controllers\CommentController@getCommentsCount');
 $app->get('api/comments/delete/{id}/{token}', 'App\Http\Controllers\CommentController@deleteComment');
+$app->get('api/comments/post', 'App\Http\Controllers\CommentController@getCommentsByPost');
 
 // POST requests.
 $app->group(['middleware' => 'validInput'], function($app) {
     $app->post('api/comments/new', 'App\Http\Controllers\CommentController@saveComment');
 });
-
-$app->post('api/comments/post', 'App\Http\Controllers\CommentController@getCommentsByPost');

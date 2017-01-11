@@ -4,21 +4,21 @@ install:
 	docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d --build --force-recreate
 	make reset_db
 	make reset_logs
-	docker exec -u www-data squabble_web_1 composer install -n --prefer-dist --ansi
-	docker exec squabble_web_1 php artisan migrate
+	docker exec -u www-data squabble_app_1 composer install -n --prefer-dist --ansi
+	docker exec squabble_app_1 php artisan migrate
 	docker-compose ps
 
 build:
 	docker build -t savaslabs/squabble .
 
 reset_logs:
-	-docker exec squabble_web_1 rm /var/www/html/storage/logs/lumen.log
-	docker exec squabble_web_1 touch /var/www/html/storage/logs/lumen.log
-	docker exec squabble_web_1 chmod a+w /var/www/html/storage/logs
-	docker exec squabble_web_1 chmod a+w /var/www/html/storage/logs/lumen.log
+	-docker exec squabble_app_1 rm /var/www/html/storage/logs/lumen.log
+	docker exec squabble_app_1 touch /var/www/html/storage/logs/lumen.log
+	docker exec squabble_app_1 chmod a+w /var/www/html/storage/logs
+	docker exec squabble_app_1 chmod a+w /var/www/html/storage/logs/lumen.log
 
 logs:
-	docker logs -f squabble_web_1
+	docker logs -f squabble_app_1
 
 clean:
 	make down
@@ -26,11 +26,11 @@ clean:
 	-docker volume rm squabble_db
 
 reset_db:
-	-docker exec squabble_web_1 rm /db/database.sqlite
-	docker exec squabble_web_1 touch /db/database.sqlite
-	docker exec squabble_web_1 chmod a+w /db/database.sqlite
-	docker exec squabble_web_1 chmod a+w /db
-	-docker exec squabble_web_1 php artisan migrate
+	-docker exec squabble_app_1 rm /db/database.sqlite
+	docker exec squabble_app_1 touch /db/database.sqlite
+	docker exec squabble_app_1 chmod a+w /db/database.sqlite
+	docker exec squabble_app_1 chmod a+w /db
+	-docker exec squabble_app_1 php artisan migrate
 
 up:
 	- docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d
@@ -42,7 +42,7 @@ down:
 
 phpunit:
 	make reset_db
-	docker exec squabble_web_1 phpunit --colors=always
+	docker exec squabble_app_1 phpunit --colors=always
 
 behat:
 	make reset_db
