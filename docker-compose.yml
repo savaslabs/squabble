@@ -32,6 +32,13 @@ services:
       - MAIL_DRIVER=log
       - BASEURL=localhost:8000
       - DB_DATABASE=/db/database.sqlite
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+      - DAC_OVERRIDE
+      - SETGID
+      - SETUID
     volumes:
         - db:/db
         - vendor:/var/www/html/vendor
