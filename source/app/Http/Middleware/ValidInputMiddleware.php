@@ -21,29 +21,34 @@ class ValidInputMiddleware {
 
         // If we've got a bot, fake a successful request.
         if ($request->input('url')) {
-            $responseParams =array('message' => 'Spam', 'status' => 403);
+            $responseParams = array('message' => 'Spam', 'status' => 403);
         }
         else if (!$request->input('name')) {
-            $responseParams =array('message' => 'Name is required', 'status' => 400);
+            $responseParams = array('message' => 'Please enter your name.', 'status' => 400);
         }
         else if (!$request->input('email')) {
-            $responseParams =array('message' => 'Email is required', 'status' => 400);
+            $responseParams = array('message' => 'Please enter your email.', 'status' => 400);
         }
         else if (!$request->input('comment')) {
-            $responseParams =array('message' => 'Comment is required', 'status' => 400);
+            $responseParams = array('message' => 'Please include a comment.', 'status' => 400);
         }
         else if (!$request->input('slug')) {
             // TODO: Check against website to ensure the slug is valid.
             $responseParams = array('message' => 'Slug is required', 'status' => 400);
         }
         else if (!$request->input('nocaptcha')) {
-            $responseParams = array('message' => 'No captcha response required', 'status' => 400);
+            $responseParams = array(
+              'message' => 'Please answer "What type of animal is the Savas Labs logo?"',
+              'status' => 400,
+              'data' => array('error_field' => 'nocaptcha')
+            );
         }
         else if (stripos($request->input('nocaptcha'), getenv('NOCAPTCHA')) === FALSE) {
             // We don't return a 403 here, so that we can display the message to the end user.
             $responseParams = array(
-              'message' => 'Sorry, our mascot is not a(n) ' . $request->input('nocaptcha'),
-              'status' => 400
+              'message' => 'Sorry, our logo is not a(n) ' . $request->input('nocaptcha') . '. Please try again!',
+              'status' => 400,
+              'error_field' => 'nocaptcha'
             );
         }
 
@@ -58,7 +63,7 @@ class ValidInputMiddleware {
             'nocaptcha' => $request->input('nocaptcha'),
             ),
             TRUE)));
-          return CommentHelpers::formatData(array(), false, $responseParams['message'], $responseParams['status']);
+          return CommentHelpers::formatData(array(), false, $responseParams['message'], $responseParams['error_field'], $responseParams['status']);
         }
 
         return $next($request);

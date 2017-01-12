@@ -11,11 +11,12 @@ class CommentHelpers {
     /**
      * Format data for responses to requests.
      */
-    public static function formatData($data, $success = true, $message = '', $status_code = 200) {
+    public static function formatData($data, $success = true, $message = '', $error_field = '', $status_code = 200) {
         $content = array(
             'success' => $success,
             'data' => $data,
             'message' => $message,
+            'error_field' => $error_field
         );
         if ($status_code !== 200 && $message) {
             \Log::warning($message, array('status_code' => $status_code, 'data' => $data));
