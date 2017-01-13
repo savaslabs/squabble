@@ -25,6 +25,6 @@ $app->get('api/comments/delete/{id}/{token}', 'App\Http\Controllers\CommentContr
 $app->get('api/comments/post', 'App\Http\Controllers\CommentController@getCommentsByPost');
 
 // POST requests.
-$app->group(['middleware' => 'validInput'], function($app) {
+$app->group(['middleware' => ['throttle:1,1', 'validInput']], function($app) {
     $app->post('api/comments/new', 'App\Http\Controllers\CommentController@saveComment');
 });

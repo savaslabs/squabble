@@ -33,13 +33,13 @@ $app->withEloquent();
 */
 
 $app->singleton(
-    'Illuminate\Contracts\Debug\ExceptionHandler',
-    'App\Exceptions\Handler'
+    Illuminate\Contracts\Debug\ExceptionHandler::class,
+    App\Exceptions\Handler::class
 );
 
 $app->singleton(
-    'Illuminate\Contracts\Console\Kernel',
-    'App\Console\Kernel'
+    Illuminate\Contracts\Console\Kernel::class,
+    App\Console\Kernel::class
 );
 
 /*
@@ -53,16 +53,9 @@ $app->singleton(
   |
 */
 
-$app->middleware([
-    //     // 'Illuminate\Cookie\Middleware\EncryptCookies',
-    //     // 'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
-    //     // 'Illuminate\Session\Middleware\StartSession',
-    //     // 'Illuminate\View\Middleware\ShareErrorsFromSession',
-    //     // 'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
-]);
-
 $app->routeMiddleware([
-    'validInput' => 'App\Http\Middleware\ValidInputMiddleware',
+    'validInput' => App\Http\Middleware\ValidInputMiddleware::class,
+    'throttle' => App\Http\Middleware\ThrottleRequests::class,
 ]);
 
 /*
@@ -76,7 +69,7 @@ $app->routeMiddleware([
   |
 */
 
-$app->register('App\Providers\AppServiceProvider');
+$app->register(App\Providers\AppServiceProvider::class);
 
 /*
   |--------------------------------------------------------------------------
@@ -89,6 +82,8 @@ $app->register('App\Providers\AppServiceProvider');
   |
 */
 
-require __DIR__.'/../app/Http/routes.php';
+$app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
+  require __DIR__.'/../app/Http/routes.php';
+});
 
 return $app;
