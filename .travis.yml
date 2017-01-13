@@ -16,3 +16,4 @@ script:
 
 after_failure:
   - docker logs squabble_app_1
+  - docker exec -it squabble_app_1 cat storage/logs/lumen.log
