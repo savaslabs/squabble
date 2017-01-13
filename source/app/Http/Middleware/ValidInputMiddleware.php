@@ -38,7 +38,7 @@ class ValidInputMiddleware {
         }
         else if (!$request->input('nocaptcha')) {
             $responseParams = array(
-              'message' => 'Please answer "What type of animal is the Savas logo?"',
+              'message' => 'Please answer "What type of animal is the Savas Labs logo?"',
               'status' => 400,
               'data' => array('error_field' => 'nocaptcha')
             );
