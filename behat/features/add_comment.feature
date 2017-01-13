@@ -79,7 +79,7 @@ Scenario: Someone adds an invalid comment (wrong nocaptcha)
     slug=fo/bar/bas.html
     nocaptcha=Tiger
     """
-  Then the response should contain "Sorry, our mascot is not a(n) Tiger. Please try again!"
+  Then the response should contain "Sorry, our logo is not a(n) Tiger. Please try again!"
   And the response code should be 400
 
 Scenario: A spambot tries to add a comment
