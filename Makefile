@@ -12,8 +12,8 @@ build:
 	docker build -t savaslabs/squabble .
 
 reset_logs:
-	docker exec squabble_app_1 if [ -f /var/www/html/storage/logs/lumen.log]; then rm /var/www/html/storage/logs/lumen.log; fi
-	docker exec -u www-data squabble_app_1 touch /var/www/html/storage/logs/lumen.log
+	docker exec squabble_app_1 sh -c "if [ -f /var/www/html/storage/logs/lumen.log]; then rm /var/www/html/storage/logs/lumen.log; fi"
+	docker exec squabble_app_1 touch /var/www/html/storage/logs/lumen.log
 
 logs:
 	docker logs -f squabble_app_1
@@ -24,8 +24,8 @@ clean:
 	-docker volume rm squabble_db
 
 reset_db:
-	docker exec squabble_app_1 if [ -f /db/database.sqlite ]; then rm /db/database.sqlite; fi
-	docker exec -u www-data squabble_app_1 touch /db/database.sqlite
+	docker exec squabble_app_1 sh -c "if [ -f /db/database.sqlite ]; then rm /db/database.sqlite; fi"
+	docker exec squabble_app_1 touch /db/database.sqlite
 	docker exec squabble_app_1 php artisan migrate
 
 up:
