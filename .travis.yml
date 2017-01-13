@@ -3,14 +3,8 @@ language: ruby
 services:
   - docker
 
-env:
-  DOCKER_COMPOSE_VERSION: 1.8.0
-
 before_install:
   - docker version
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
   - docker-compose version
   - cp docker-compose.local.travis.yml docker-compose.local.yml
 
@@ -18,7 +12,7 @@ install:
   - make install
 
 script:
-  make test
+  - make test
 
 after_failure:
-  docker logs squabble_web_1
+  - docker logs squabble_app_1
