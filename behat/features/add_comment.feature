@@ -23,7 +23,7 @@ Scenario: Someone adds an invalid comment (missing name)
     slug=fo/bar/bas.html
     nocaptcha=owl
     """
-  Then the response should contain "Name is required"
+  Then the response should contain "Please enter your name."
   And the response code should be 400
 
 Scenario: Someone adds an invalid comment (missing email)
@@ -34,7 +34,7 @@ Scenario: Someone adds an invalid comment (missing email)
     slug=fo/bar/bas.html
     nocaptcha=owl
     """
-  Then the response should contain "Email is required"
+  Then the response should contain "Please enter your email."
   And the response code should be 400
 
 Scenario: Someone adds an invalid comment (missing comment)
@@ -45,7 +45,7 @@ Scenario: Someone adds an invalid comment (missing comment)
     slug=fo/bar/bas.html
     nocaptcha=owl
     """
-  Then the response should contain "Comment is required"
+  Then the response should contain "Please include a comment."
   And the response code should be 400
 
 Scenario: Someone adds an invalid comment (missing slug)
@@ -67,7 +67,7 @@ Scenario: Someone adds an invalid comment (missing nocaptcha)
   comment=A comment
   slug=fo/bar/bas.html
   """
-  Then the response should contain "No captcha response required"
+  Then the response should contain "What type of animal is the Savas Labs logo?"
   And the response code should be 400
 
 Scenario: Someone adds an invalid comment (wrong nocaptcha)
@@ -79,7 +79,7 @@ Scenario: Someone adds an invalid comment (wrong nocaptcha)
     slug=fo/bar/bas.html
     nocaptcha=Tiger
     """
-  Then the response should contain "Sorry, our mascot is not a(n) Tiger"
+  Then the response should contain "Sorry, our mascot is not a(n) Tiger. Please try again!"
   And the response code should be 400
 
 Scenario: A spambot tries to add a comment
