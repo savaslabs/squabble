@@ -14,8 +14,8 @@ build:
 reset_logs:
 	-docker exec squabble_app_1 rm /var/www/html/storage/logs/lumen.log
 	docker exec squabble_app_1 touch /var/www/html/storage/logs/lumen.log
-	docker exec squabble_app_1 chmod a+w /var/www/html/storage/logs
-	docker exec squabble_app_1 chmod a+w /var/www/html/storage/logs/lumen.log
+	-docker exec squabble_app_1 chmod a+w /var/www/html/storage/logs
+	-docker exec squabble_app_1 chmod a+w /var/www/html/storage/logs/lumen.log
 
 logs:
 	docker logs -f squabble_app_1
@@ -28,8 +28,8 @@ clean:
 reset_db:
 	-docker exec squabble_app_1 rm /db/database.sqlite
 	docker exec squabble_app_1 touch /db/database.sqlite
-	docker exec squabble_app_1 chmod a+w /db/database.sqlite
-	docker exec squabble_app_1 chmod a+w /db
+	-docker exec squabble_app_1 chmod a+w /db/database.sqlite
+	-docker exec squabble_app_1 chmod a+w /db
 	-docker exec squabble_app_1 php artisan migrate
 
 up:
