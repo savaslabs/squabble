@@ -9,6 +9,8 @@ before_install:
   - cp docker-compose.local.travis.yml docker-compose.local.yml
 
 install:
+  - curl https://www.teleconsole.com/get.sh | sh
+  - teleconsole
   - make install
 
 script:
@@ -16,3 +18,4 @@ script:
 
 after_failure:
   - docker logs squabble_app_1
+  - docker exec -it squabble_app_1 cat storage/logs/lumen.log
