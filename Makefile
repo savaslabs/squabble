@@ -43,11 +43,11 @@ phpunit:
 
 behat:
 	make reset_db
-	docker run --rm --network=host --entrypoint=vendor/bin/behat --volumes-from=squabble_app_1 savaslabs/squabble -c behat/behat.yml --colors -f progress
+	docker run --rm -w /var/www/html --network=host --entrypoint=vendor/bin/behat --volumes-from=squabble_app_1 squabble_app -c behat/behat.yml --colors -f progress
 
 wip:
 	make reset_db
-	docker-compose run --rm --entrypoint=vendor/bin/behat app -c behat/behat.yml --tags=@wip --colors
+	docker run --rm -w /var/www/html --network=host --entrypoint=vendor/bin/behat --volumes-from=squabble_app_1 squabble_app -c behat/behat.yml --colors -f pretty --tags=@wip --colors
 
 test:
 	make phpunit
