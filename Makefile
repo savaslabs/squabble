@@ -24,9 +24,8 @@ clean:
 	-docker volume rm squabble_db
 
 reset_db:
-	docker exec squabble_app_1 sh -c "if [ -f /db/database.sqlite ]; then rm /db/database.sqlite; fi"
-	docker exec squabble_app_1 touch /db/database.sqlite
-	docker exec squabble_app_1 chmod -R 777 /db
+	docker exec squabble_app_1 sh -c "if [ -f /var/www/html/storage/database.sqlite ]; then rm /var/www/html/storage/database.sqlite; fi"
+	docker exec -u www-data squabble_app_1 touch /var/www/html/storage/database.sqlite
 	docker exec squabble_app_1 php artisan migrate
 
 up:
