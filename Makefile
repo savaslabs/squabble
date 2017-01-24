@@ -25,7 +25,8 @@ clean:
 
 reset_db:
 	docker exec squabble_app_1 sh -c "if [ -f /var/www/html/storage/database.sqlite ]; then rm /var/www/html/storage/database.sqlite; fi"
-	docker exec -u www-data squabble_app_1 touch /var/www/html/storage/database.sqlite
+	docker exec squabble_app_1 touch /var/www/html/storage/database.sqlite
+	docker exec squabble_app_1 chown www-data:www-data /var/www/html/storage/database.sqlite
 	docker exec squabble_app_1 php artisan migrate
 
 up:
