@@ -10,7 +10,10 @@
         "psy/psysh": "@stable"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.0"
+        "phpunit/phpunit": "~4.0",
+        "behat/behat": "3.1.0",
+        "behat/web-api-extension": "~1.0@dev",
+        "deminy/behat-rest-testing": "@dev"
     },
     "autoload": {
         "psr-4": {
@@ -26,6 +29,7 @@
         ]
     },
     "config": {
+        "bin-dir": "bin/",
         "preferred-install": "dist"
     }
 }

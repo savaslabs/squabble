@@ -18,7 +18,8 @@ install:
   - teleconsole
 
 script:
-  - make test
+  - make phpunit
+  - make behat
 
 after_failure:
   - docker logs squabble_app_1
