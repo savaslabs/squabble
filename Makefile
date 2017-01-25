@@ -4,8 +4,7 @@ install:
 	docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d --build --force-recreate
 	make reset_db
 	make reset_logs
-	docker exec -u www-data squabble_app_1 composer install -n --prefer-dist --ansi
-	docker exec squabble_app_1 php artisan migrate
+	docker exec -u www-data squabble_app_1 php artisan migrate
 	docker-compose ps
 
 build:
@@ -13,7 +12,7 @@ build:
 
 reset_logs:
 	docker exec squabble_app_1 sh -c "if [ -f /var/www/html/storage/logs/lumen.log]; then rm /var/www/html/storage/logs/lumen.log; fi"
-	docker exec squabble_app_1 touch /var/www/html/storage/logs/lumen.log
+	docker exec -u www-data squabble_app_1 touch /var/www/html/storage/logs/lumen.log
 
 logs:
 	docker logs -f squabble_app_1
@@ -25,8 +24,8 @@ clean:
 
 reset_db:
 	docker exec squabble_app_1 sh -c "if [ -f /var/www/html/storage/database.sqlite ]; then rm /var/www/html/storage/database.sqlite; fi"
-	docker exec squabble_app_1 touch /var/www/html/storage/database.sqlite
-	docker exec squabble_app_1 php artisan migrate
+	docker exec -u www-data squabble_app_1 touch /var/www/html/storage/database.sqlite
+	docker exec -u www-data squabble_app_1 php artisan migrate
 
 up:
 	docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d

@@ -1,8 +1,4 @@
-source/tests/
-source/phpunit.xml
 source/storage/logs/lumen.log
-source/storage.database.sqlite
-source/vendor/
+source/storage/database.sqlite
 Dockerfile
 .dockerignore
-behat

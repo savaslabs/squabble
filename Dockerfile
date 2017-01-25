@@ -29,7 +29,7 @@ RUN mkdir /var/www/.composer; chown www-data:www-data /var/www/.composer; chown 
 WORKDIR /var/www/html
 USER www-data
 RUN composer global require "hirak/prestissimo:^0.3"
-RUN composer install --no-dev --no-plugins --no-scripts
+RUN composer install -n --prefer-dist
 
 USER root
 
