@@ -1,7 +1,1 @@
 version: '2'
-services:
-  app:
-    ports:
-      - "8000:80"
-    volumes:
-      - ./source:/var/www/html
