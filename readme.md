@@ -46,7 +46,7 @@ The following route is defined:
 Example POST request:
 
 ``` bash
-curl -i -H 'Content-Type: application/json' -XPOST 'http://localhost:8000/api/comments/new' -d '{
+curl -i -H 'Content-Type: application/json' -XPOST 'http://local.comments.savaslabs.com/api/comments/new' -d '{
     "name": "Some author",
     "email": "a@b.com",
     "comment": "A comment would go here",

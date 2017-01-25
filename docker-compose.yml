@@ -31,7 +31,7 @@ services:
       - NOCAPTCHA=owl
       - MAIL_DRIVER=log
       - BASEURL=localhost:8000
-      - DB_DATABASE=/db/database.sqlite
+      - DB_DATABASE=/var/www/html/storage/database.sqlite
     cap_drop:
       - ALL
     cap_add:
@@ -40,11 +40,8 @@ services:
       - SETGID
       - SETUID
     volumes:
-        - db:/db
         - vendor:/var/www/html/vendor
 
 volumes:
-  db:
-    driver: local
   vendor:
     driver: local
