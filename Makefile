@@ -12,7 +12,7 @@ build:
 
 reset_logs:
 	docker exec squabble_app_1 sh -c "if [ -f /var/www/html/storage/logs/lumen.log]; then rm /var/www/html/storage/logs/lumen.log; fi"
-	docker exec squabble_app_1 touch /var/www/html/storage/logs/lumen.log
+	docker exec -u www-data squabble_app_1 touch /var/www/html/storage/logs/lumen.log
 
 logs:
 	docker logs -f squabble_app_1
