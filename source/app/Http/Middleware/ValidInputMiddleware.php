@@ -24,17 +24,33 @@ class ValidInputMiddleware {
             $responseParams = array('message' => 'Spam', 'status' => 403, 'data' => array());
         }
         else if (!$request->input('name')) {
-            $responseParams = array('message' => 'Please enter your name.', 'status' => 400, 'data' => array());
+            $responseParams = array(
+              'message' => 'Please enter your name.',
+              'status' => 400,
+              'data' => array('error_field' => 'name')
+            );
         }
         else if (!$request->input('email')) {
-            $responseParams = array('message' => 'Please enter your email.', 'status' => 400, 'data' => array());
+            $responseParams = array(
+              'message' => 'Please enter your email.',
+              'status' => 400,
+              'data' => array('error_field' => 'email')
+            );
         }
         else if (!$request->input('comment')) {
-            $responseParams = array('message' => 'Please include a comment.', 'status' => 400, 'data' => array());
+            $responseParams = array(
+              'message' => 'Please include a comment.',
+              'status' => 400,
+              'data' => array('error_field' => 'comment')
+            );
         }
         else if (!$request->input('slug')) {
             // TODO: Check against website to ensure the slug is valid.
-            $responseParams = array('message' => 'Slug is required', 'status' => 400, 'data' => array());
+            $responseParams = array(
+              'message' => 'Slug is required',
+              'status' => 400,
+              'data' => array('error_field' => 'slug')
+            );
         }
         else if (!$request->input('nocaptcha')) {
             $responseParams = array(
