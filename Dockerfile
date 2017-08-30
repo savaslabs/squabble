@@ -25,11 +25,15 @@ RUN cd $HOME && \
 
 RUN sed -i -e 's/\/var\/www\/html/\/var\/www\/html\/public/' /etc/apache2/sites-enabled/000-default.conf
 
+RUN ln -s /var/www/html/storage/logs/lumen.log /dev/stdout
+
 RUN mkdir /var/www/.composer; chown www-data:www-data /var/www/.composer; chown -R www-data:www-data /var/www/html
 WORKDIR /var/www/html
 USER www-data
 RUN composer global require "hirak/prestissimo:^0.3"
 RUN composer install -n --prefer-dist
+
+VOLUME /db
 
 USER root
 
