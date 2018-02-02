@@ -11,7 +11,7 @@ class Comment extends Model
 {
     protected $fillable = ['slug', 'comment', 'name', 'email', 'ip', 'token', 'savasian'];
 
-    protected $hidden = ['token', 'email', 'ip'];
+    protected $hidden = ['token', 'ip'];
 
     public function getCommentAttribute($value)
     {
@@ -30,7 +30,7 @@ class Comment extends Model
 
     public function getEmailAttribute($value)
     {
-        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        return md5(trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8')));
     }
 
     public function getIpAttribute($value)
