@@ -30,7 +30,7 @@ class Comment extends Model
 
     public function getEmailAttribute($value)
     {
-        return md5(trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8')));
+        return md5(strtolower(trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'))));
     }
 
     public function getIpAttribute($value)
