@@ -21,6 +21,8 @@ Run `make up`.
 
 Edit your `/etc/hosts` and set `127.0.0.1 local.comments.savaslabs.com`. Run `curl http://local.comments.savaslabs.com/api/comments` to confirm that the server is working; if not, run `docker-compose logs -f` to see what error messages are appearing.
 
+(Run `make help` to display a summary list of the most commonly used commands)
+
 #### Testing
 
 `make test` will run PHPUnit and Behat tests.
